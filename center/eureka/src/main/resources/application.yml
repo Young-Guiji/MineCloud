@@ -1,0 +1,19 @@
+server:
+  port: ${EUREKA_PORT:8761}
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+
+spring:
+  application:
+    name: eureka-server
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:10.203.72.183}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:mine}
+    password: ${RABBIT_MQ_PASSWORD:mine}
+    virtual-host: ${RABBIT_MQ_VIRTUAL:/mine}
