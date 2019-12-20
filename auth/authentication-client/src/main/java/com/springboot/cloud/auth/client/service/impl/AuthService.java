@@ -82,7 +82,7 @@ public class AuthService implements IAuthService {
             jwt.verifySignature(verifier);
             invalid = Boolean.FALSE;
         } catch (InvalidSignatureException | IllegalArgumentException ex) {
-            log.warn("user token has expired or signature error ");
+            log.warn("dto token has expired or signature error ");
         }
         return invalid;
     }

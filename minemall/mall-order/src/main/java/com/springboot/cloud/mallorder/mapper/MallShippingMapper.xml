@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.cloud.mallorder.mapper.MallShippingMapper">
+    <resultMap id="BaseResultMap" type="com.springboot.cloud.mallorder.entity.po.MallShipping">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="receiver_name" property="receiverName" jdbcType="VARCHAR"/>
+        <result column="receiver_phone_no" property="receiverPhoneNo" jdbcType="VARCHAR"/>
+        <result column="receiver_mobile_no" property="receiverMobileNo" jdbcType="VARCHAR"/>
+        <result column="province_id" property="provinceId" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="district_name" property="districtName" jdbcType="VARCHAR"/>
+        <result column="district_id" property="districtId" jdbcType="VARCHAR"/>
+        <result column="street_id" property="streetId" jdbcType="VARCHAR"/>
+        <result column="street_name" property="streetName" jdbcType="VARCHAR"/>
+        <result column="detail_address" property="detailAddress" jdbcType="VARCHAR"/>
+        <result column="receiver_zip_code" property="receiverZipCode" jdbcType="VARCHAR"/>
+        <result column="default_address" property="defaultAddress" jdbcType="INTEGER"/>
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="created_id" property="createdId" jdbcType="VARCHAR"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updated_id" property="updatedId" jdbcType="VARCHAR"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, version, receiver_name, receiver_phone_no, receiver_mobile_no, province_id,
+        province_name, city_id, city_name, district_name, district_id, street_id, street_name,
+        detail_address, receiver_zip_code, created_by, created_id, created_time, updated_by,
+        updated_id, updated_time
+    </sql>
+
+    <delete id="deleteByShippingIdUserId" parameterType="map">
+        DELETE FROM pc_omc_shipping
+        WHERE id = #{shippingId}
+              AND user_id = #{userId}
+    </delete>
+    <select id="selectByShippingIdUserId" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from pc_omc_shipping
+        where id = #{shippingId}
+        and user_id = #{userId}
+    </select>
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from pc_omc_shipping
+        where user_id = #{userId}
+    </select>
+    <select id="selectDefaultAddressByUserId"
+            resultType="com.springboot.cloud.mallorder.entity.po.MallShipping">
+        SELECT
+            <include refid="Base_Column_List"/>
+        from pc_omc_shipping
+        where id = #{shippingId}
+        and default = 1
+    </select>
+
+</mapper>

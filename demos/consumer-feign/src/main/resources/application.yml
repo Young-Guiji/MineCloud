@@ -43,7 +43,7 @@ spring:
 logging:
   level:
     org.springframework.cloud.sleuth: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB
 management:

@@ -16,8 +16,11 @@ import java.time.ZonedDateTime;
 @Getter
 public class Result<T> {
 
-    public static final String SUCCESSFUL_CODE = "000000";
+    public static final String SUCCESSFUL_CODE = "200";
     public static final String SUCCESSFUL_MESG = "处理成功";
+
+    public static final String FAIL_CODE = "500";
+    public static final String FAIL_MESG = "处理失败";
 
     @ApiModelProperty(value = "处理结果code", required = true)
     private String code;
@@ -141,7 +144,16 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail(Object data) {
-        return new Result<>(SystemErrorType.SYSTEM_ERROR, data);
+        return new Result<>(FAIL_CODE, FAIL_MESG, data);
+    }
+
+    /**
+     * 系统异常类并返回结果数据
+     *
+     * @return Result
+     */
+    public static Result fail(String mesg) {
+        return new Result<>(FAIL_CODE, mesg,null);
     }
 
 

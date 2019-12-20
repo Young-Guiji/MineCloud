@@ -45,6 +45,6 @@ logging:
   level:
     com.springboot.cloud.gateway: debug
     com.jalja.org.spring: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB

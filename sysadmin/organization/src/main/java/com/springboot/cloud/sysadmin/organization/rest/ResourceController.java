@@ -1,12 +1,12 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.sysadmin.organization.entity.form.ResourceForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.ResourceQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import com.springboot.cloud.sysadmin.organization.service.IResourceService;
 import io.swagger.annotations.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +15,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/resource")
 @Api("resource")
-@Slf4j
-public class ResourceController {
+public class ResourceController extends BaseController {
 
     @Autowired
     private IResourceService resourceService;
@@ -25,7 +24,7 @@ public class ResourceController {
     @ApiImplicitParam(name = "resourceForm", value = "新增资源form表单", required = true, dataType = "ResourceForm")
     @PostMapping
     public Result add(@Valid @RequestBody ResourceForm resourceForm) {
-        log.debug("name:{}", resourceForm);
+        logger.debug("name:{}", resourceForm);
         Resource resource = resourceForm.toPo(Resource.class);
         return Result.success(resourceService.add(resource));
     }
@@ -55,7 +54,7 @@ public class ResourceController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
-        log.debug("get with id:{}", id);
+        logger.debug("get with id:{}", id);
         return Result.success(resourceService.get(id));
     }
 
@@ -66,7 +65,7 @@ public class ResourceController {
     )
     @GetMapping(value = "/user/{username}")
     public Result queryByUsername(@PathVariable String username) {
-        log.debug("query with username:{}", username);
+        logger.debug("query with username:{}", username);
         return Result.success(resourceService.query(username));
     }
 
@@ -86,7 +85,7 @@ public class ResourceController {
     )
     @GetMapping
     public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
+        logger.debug("query with name:{}", name);
         ResourceQueryParam resourceQueryParam = new ResourceQueryParam();
         resourceQueryParam.setName(name);
         return Result.success(resourceService.query(resourceQueryParam));

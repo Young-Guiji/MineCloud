@@ -20,6 +20,7 @@
         <module>monitor</module>
         <module>sysadmin</module>
         <module>demos</module>
+        <module>minemall</module>
     </modules>
 
     <dependencyManagement>

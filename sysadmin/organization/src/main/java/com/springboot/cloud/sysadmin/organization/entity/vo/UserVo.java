@@ -1,6 +1,6 @@
 package com.springboot.cloud.sysadmin.organization.entity.vo;
 
-import com.springboot.cloud.common.web.entity.vo.BaseVo;
+import com.springboot.cloud.common.core.entity.vo.BaseVo;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +24,4 @@ public class UserVo extends BaseVo<User> {
     private String description;
     private String deleted;
     private Set<String> roleIds;
-    private String createdBy;
-    private String updatedBy;
-    private Date createdTime;
-    private Date updatedTime;
 }

@@ -53,8 +53,7 @@ spring:
 gate:
   ignore:
     authentication:
-      startWith: /oauth,/open
-
+      startWith: /oauth,/open,/auth
 management:
   endpoints:
     web:
@@ -65,6 +64,6 @@ logging:
   level:
     com.springboot.cloud.gateway: debug
     com.jalja.org.spring: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB

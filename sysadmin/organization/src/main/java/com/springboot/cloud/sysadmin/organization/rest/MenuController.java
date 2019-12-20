@@ -1,6 +1,7 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.sysadmin.organization.entity.form.MenuForm;
 import com.springboot.cloud.sysadmin.organization.entity.form.MenuQueryForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.MenuQueryParam;
@@ -16,8 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/menu")
 @Api("menu")
-@Slf4j
-public class MenuController {
+public class MenuController extends BaseController {
 
     @Autowired
     private IMenuService menuService;
@@ -26,7 +26,7 @@ public class MenuController {
     @ApiImplicitParam(name = "menuForm", value = "新增菜单form表单", required = true, dataType = "MenuForm")
     @PostMapping
     public Result add(@Valid @RequestBody MenuForm menuForm) {
-        log.debug("name:{}", menuForm);
+        logger.debug("name:{}", menuForm);
         Menu menu = menuForm.toPo(Menu.class);
         return Result.success(menuService.add(menu));
     }
@@ -56,7 +56,7 @@ public class MenuController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
-        log.debug("get with id:{}", id);
+        logger.debug("get with id:{}", id);
         return Result.success(menuService.get(id));
     }
 
@@ -67,7 +67,7 @@ public class MenuController {
     )
     @GetMapping
     public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
+        logger.debug("query with name:{}", name);
         MenuQueryParam menuQueryParam = new MenuQueryParam();
         menuQueryParam.setName(name);
         return Result.success(menuService.query(menuQueryParam));
@@ -80,7 +80,7 @@ public class MenuController {
     )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody MenuQueryForm menuQueryForm) {
-        log.debug("search with menuQueryForm:{}", menuQueryForm);
+        logger.debug("search with menuQueryForm:{}", menuQueryForm);
         return Result.success(menuService.query(menuQueryForm.toParam(MenuQueryParam.class)));
     }
 
@@ -88,7 +88,7 @@ public class MenuController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "菜单父ID", required = true, dataType = "long")
     @GetMapping(value = "/parent/{id}")
     public Result search(@PathVariable long id) {
-        log.debug("query with parent id:{}", id);
+        logger.debug("query with parent id:{}", id);
         return Result.success(menuService.queryByParentId(id));
     }
 }

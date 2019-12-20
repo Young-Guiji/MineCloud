@@ -56,8 +56,17 @@ public class UserContextHolder {
      *
      * @return
      */
-    public String getUsername() {
-        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get("user_name");
+    public String getName() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get("loginName");
+    }
+
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getUserId() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get("userId");
     }
 
     /**

@@ -2,6 +2,7 @@ package com.springboot.auth.authorization.oauth2;
 
 import com.springboot.auth.authorization.entity.Role;
 import com.springboot.auth.authorization.entity.User;
+import com.springboot.auth.authorization.oauth2.userdetail.SecurityUser;
 import com.springboot.auth.authorization.service.IRoleService;
 import com.springboot.auth.authorization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +27,24 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String uniqueId) {
-
         User user = userService.getByUniqueId(uniqueId);
         log.info("load user by username :{}", user.toString());
 
-        return new org.springframework.security.core.userdetails.User(
+//        return new org.springframework.security.core.userdetails.User(
+//                user.getUsername(),
+//                user.getPassword(),
+//                user.getEnabled(),
+//                user.getAccountNonExpired(),
+//                user.getCredentialsNonExpired(),
+//                user.getAccountNonLocked(),
+//                this.obtainGrantedAuthorities(user)
+//        );
+
+        return new SecurityUser(
+                user.getId(),
                 user.getUsername(),
                 user.getPassword(),
+                user.getName(),
                 user.getEnabled(),
                 user.getAccountNonExpired(),
                 user.getCredentialsNonExpired(),

@@ -2,6 +2,7 @@ package com.springboot.cloud.sysadmin.organization.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import com.springboot.cloud.sysadmin.organization.entity.vo.UserVo;
@@ -52,4 +53,6 @@ public interface IUserService {
      * @param id
      */
     void delete(String id);
+
+    int updateUser(UserInfoDto userInfoDto);
 }

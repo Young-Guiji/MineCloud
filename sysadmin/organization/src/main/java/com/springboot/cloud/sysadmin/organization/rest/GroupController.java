@@ -1,13 +1,13 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.sysadmin.organization.entity.form.GroupForm;
 import com.springboot.cloud.sysadmin.organization.entity.form.GroupQueryForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.GroupQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Group;
 import com.springboot.cloud.sysadmin.organization.service.IGroupService;
 import io.swagger.annotations.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +16,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/group")
 @Api("group")
-@Slf4j
-public class GroupController {
+public class GroupController  extends BaseController {
 
     @Autowired
     private IGroupService groupService;
@@ -26,7 +25,7 @@ public class GroupController {
     @ApiImplicitParam(name = "groupForm", value = "新增用户组form表单", required = true, dataType = "GroupForm")
     @PostMapping
     public Result add(@Valid @RequestBody GroupForm groupForm) {
-        log.debug("name:{}", groupForm);
+        logger.debug("name:{}", groupForm);
         Group group = groupForm.toPo(Group.class);
         return Result.success(groupService.add(group));
     }
@@ -56,7 +55,7 @@ public class GroupController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
-        log.debug("get with id:{}", id);
+        logger.debug("get with id:{}", id);
         return Result.success(groupService.get(id));
     }
 
@@ -67,7 +66,7 @@ public class GroupController {
     )
     @GetMapping
     public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
+        logger.debug("query with name:{}", name);
         GroupQueryParam groupQueryParam = new GroupQueryParam();
         groupQueryParam.setName(name);
         return Result.success(groupService.query(groupQueryParam));
@@ -80,7 +79,7 @@ public class GroupController {
     )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody GroupQueryForm groupQueryForm) {
-        log.debug("search with groupQueryForm:{}", groupQueryForm);
+        logger.debug("search with groupQueryForm:{}", groupQueryForm);
         return Result.success(groupService.query(groupQueryForm.toParam(GroupQueryParam.class)));
     }
 
@@ -88,7 +87,7 @@ public class GroupController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组父ID", required = true, dataType = "long")
     @GetMapping(value = "/parent/{id}")
     public Result search(@PathVariable String id) {
-        log.debug("query with parent id:{}", id);
+        logger.debug("query with parent id:{}", id);
         return Result.success(groupService.queryByParentId(id));
     }
 }

@@ -25,6 +25,6 @@ management:
 logging:
   level:
     org.springframework.web: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB

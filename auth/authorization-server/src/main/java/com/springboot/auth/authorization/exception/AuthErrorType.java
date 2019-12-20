@@ -6,11 +6,14 @@ import lombok.Getter;
 @Getter
 public enum AuthErrorType implements ErrorType {
 
+    LOGIN_FAIL("040000", "登录失败"),
     INVALID_REQUEST("040001", "无效请求"),
     INVALID_CLIENT("040002", "无效client_id"),
     INVALID_GRANT("040003", "无效授权"),
     INVALID_SCOPE("040004", "无效scope"),
     INVALID_TOKEN("040005", "无效token"),
+    INVALID_VALIDATECODE("040006", "验证码错误"),
+    INVALID_USER("040007", "用户名或密码错误"),
     INSUFFICIENT_SCOPE("040010", "授权不足"),
     REDIRECT_URI_MISMATCH("040020", "redirect url不匹配"),
     ACCESS_DENIED("040030", "拒绝访问"),

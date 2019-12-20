@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.springboot.auth.authorization.oauth2.granter.MobileAuthenticationProvider;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Slf4j
 @Configuration
@@ -25,19 +27,29 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
-
     @Autowired
     @Qualifier("mobileUserDetailsService")
     private UserDetailsService mobileUserDetailsService;
+    @Autowired
+    private PcAuthenticationSuccessHandler pcAuthenticationSuccessHandler;
+    @Autowired
+    private PcAuthenticationFailureHandler pcAuthenticationFailureHandler;
+    @Autowired
+    private ValidataCodeSecurityConfig validataCodeSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/actuator/**","/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll();
+                .formLogin()
+                .loginProcessingUrl("/auth/form")
+                .successHandler(pcAuthenticationSuccessHandler)
+                .failureHandler(pcAuthenticationFailureHandler)
+        .and().apply(validataCodeSecurityConfig);
+
     }
 
     /**

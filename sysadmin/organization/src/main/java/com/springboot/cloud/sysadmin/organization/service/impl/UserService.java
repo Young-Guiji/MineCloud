@@ -3,6 +3,7 @@ package com.springboot.cloud.sysadmin.organization.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.sysadmin.organization.dao.UserMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
@@ -10,6 +11,7 @@ import com.springboot.cloud.sysadmin.organization.entity.vo.UserVo;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -52,6 +54,15 @@ public class UserService implements IUserService {
     public void delete(String id) {
         userMapper.deleteById(id);
         userRoleService.removeByUserId(id);
+    }
+
+    @Override
+    public int updateUser(UserInfoDto userInfoDto) {
+        User user = new User();
+        BeanUtils.copyProperties(userInfoDto,user);
+        if (StringUtils.isNotBlank(user.getPassword()))
+            user.setPassword(passwordEncoder().encode(user.getPassword()));
+        return userMapper.updateById(user);
     }
 
     @Override

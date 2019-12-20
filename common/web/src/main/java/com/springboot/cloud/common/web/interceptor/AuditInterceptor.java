@@ -1,6 +1,6 @@
 package com.springboot.cloud.common.web.interceptor;
 
-import com.springboot.cloud.common.web.entity.po.BasePo;
+import com.springboot.cloud.common.core.entity.po.BasePo;
 import com.springboot.cloud.common.core.util.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -25,11 +25,16 @@ public class AuditInterceptor implements Interceptor {
         DefaultParameterHandler statementHandler = (DefaultParameterHandler) invocation.getTarget();
         if (statementHandler.getParameterObject() instanceof BasePo) {
             BasePo parameter = (BasePo) statementHandler.getParameterObject();
-            String username = StringUtils.defaultIfBlank(UserContextHolder.getInstance().getUsername(), BasePo.DEFAULT_USERNAME);
-            log.debug("mybatis intercept fill username:{}", username);
-            parameter.setCreatedBy(username);
-            parameter.setCreatedTime(new Date());
+            String username = StringUtils.defaultIfBlank(UserContextHolder.getInstance().getName(), BasePo.DEFAULT_USERNAME);
+            String userId = StringUtils.defaultIfBlank(UserContextHolder.getInstance().getUserId(), BasePo.DEFAULT_USERID);
+            log.debug("mybatis intercept fill username:{}--userId:{}", username,userId);
+            if (null == parameter.getId()) {
+                parameter.setCreatedBy(username);
+                parameter.setCreatedId(userId);
+                parameter.setCreatedTime(new Date());
+            }
             parameter.setUpdatedBy(username);
+            parameter.setUpdatedId(userId);
             parameter.setUpdatedTime(new Date());
         }
         return invocation.proceed();

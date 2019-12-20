@@ -48,7 +48,7 @@ logging:
     org.springframework.security: DEBUG
     org.apache.ibatis: debug
     java.sql.PreparedStatement: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB
 
@@ -61,3 +61,16 @@ management:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+minemall:
+  security:
+    code:
+      image:
+        expireIn: 180
+        url: /auth/register,/auth/submitResetPwdEmail,/auth/code/sms
+      sms:
+        expireIn: 600
+        url: /uac/auth/submitResetPwdPhone
+        mobileMaxSendCount: 1
+        ipMaxSendCount: 2
+        totalMaxSendCount: 3

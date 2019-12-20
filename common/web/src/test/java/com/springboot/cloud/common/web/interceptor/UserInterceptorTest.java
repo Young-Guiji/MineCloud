@@ -22,6 +22,6 @@ public class UserInterceptorTest {
         request.addHeader("x-client-token-user", "{\"user_name\":\"zhangsan\"}");
         MockHttpServletResponse response = new MockHttpServletResponse();
         userInterceptor.preHandle(request, response, new Object());
-        Assert.assertEquals(UserContextHolder.getInstance().getUsername(), "zhangsan");
+        Assert.assertEquals(UserContextHolder.getInstance().getName(), "zhangsan");
     }
 }

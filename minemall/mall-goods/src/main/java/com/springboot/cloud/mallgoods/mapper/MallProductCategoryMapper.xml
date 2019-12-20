@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.cloud.mallgoods.mapper.MallProductCategoryMapper">
+  <resultMap id="BaseResultMap" type="productCategory">
+    <id column="id" property="id" jdbcType="BIGINT"/>
+    <result column="version" property="version" jdbcType="INTEGER"/>
+    <result column="img_id" property="imgId" jdbcType="BIGINT"/>
+    <result column="pid" property="pid" jdbcType="BIGINT"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="category_code" property="categoryCode" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER"/>
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+    <result column="created_id" property="createdId" jdbcType="BIGINT"/>
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+    <result column="updated_id" property="updatedId" jdbcType="BIGINT"/>
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  <resultMap id="BaseVoResultMap" type="com.springboot.cloud.mallgoods.entity.vo.CategoryVo" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List">
+    ${alias}.id,
+    ${alias}.version,
+    ${alias}.category_code,
+    ${alias}.img_id,
+    ${alias}.pid,
+    ${alias}.name,
+    ${alias}.status,
+    ${alias}.sort_order,
+    ${alias}.created_by,
+    ${alias}.created_id,
+    ${alias}.created_time,
+    ${alias}.updated_by,
+    ${alias}.updated_id,
+    ${alias}.updated_time
+  </sql>
+  <select id="selectCategoryDtoList" resultType="com.springboot.cloud.common.core.entity.mallgoods.dto.ProductCategoryDto">
+    SELECT
+      id   AS categoryId,
+      name AS categoryName
+    FROM pc_mdc_product_category
+    WHERE pid = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="listCategoryVo" resultType="com.springboot.cloud.mallgoods.entity.vo.CategoryVo">
+    SELECT
+    <include refid="Base_Column_List">
+      <property name="alias" value="category"/>
+    </include>
+    from
+    pc_mdc_product_category category
+  </select>
+</mapper>

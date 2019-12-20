@@ -2,6 +2,7 @@ package com.springboot.cloud.sysadmin.organization.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
 
@@ -58,4 +59,11 @@ public interface IRoleService {
      * @param id
      */
     void delete(String id);
+
+    /**
+     * 给角色添加资源
+     *
+     * @param
+     */
+    boolean addResourceForRole(String resourceId, String roleId);
 }

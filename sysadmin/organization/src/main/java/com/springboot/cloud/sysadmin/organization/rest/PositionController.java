@@ -1,12 +1,12 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.sysadmin.organization.entity.form.PositionForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.PositionQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Position;
 import com.springboot.cloud.sysadmin.organization.service.IPositionService;
 import io.swagger.annotations.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +15,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/position")
 @Api("position")
-@Slf4j
-public class PositionController {
+public class PositionController extends BaseController {
 
     @Autowired
     private IPositionService positionService;
@@ -25,7 +24,7 @@ public class PositionController {
     @ApiImplicitParam(name = "positionForm", value = "新增职位form表单", required = true, dataType = "PositionForm")
     @PostMapping
     public Result add(@Valid @RequestBody PositionForm positionForm) {
-        log.debug("name:{}", positionForm);
+        logger.debug("name:{}", positionForm);
         Position position = positionForm.toPo(Position.class);
         return Result.success(positionService.add(position));
     }
@@ -55,7 +54,7 @@ public class PositionController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "职位ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
-        log.debug("get with id:{}", id);
+        logger.debug("get with id:{}", id);
         return Result.success(positionService.get(id));
     }
 
@@ -66,7 +65,7 @@ public class PositionController {
     )
     @GetMapping
     public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
+        logger.debug("query with name:{}", name);
         PositionQueryParam positionQueryParam = new PositionQueryParam();
         positionQueryParam.setName(name);
         return Result.success(positionService.query(positionQueryParam));

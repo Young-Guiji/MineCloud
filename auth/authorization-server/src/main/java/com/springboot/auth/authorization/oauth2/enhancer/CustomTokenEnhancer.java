@@ -1,6 +1,7 @@
 package com.springboot.auth.authorization.oauth2.enhancer;
 
 import com.google.common.collect.Maps;
+import com.springboot.auth.authorization.oauth2.userdetail.SecurityUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -18,6 +19,8 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         Map<String, Object> additionalInfo = Maps.newHashMap();
         //自定义token内容，加入组织机构信息
         additionalInfo.put("organization", authentication.getName());
+        additionalInfo.put("loginName",((SecurityUser)authentication.getPrincipal()).getName());
+        additionalInfo.put("userId",((SecurityUser)authentication.getPrincipal()).getId());
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
         return accessToken;
     }

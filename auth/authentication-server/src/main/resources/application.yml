@@ -48,7 +48,7 @@ logging:
     org.springframework.security: DEBUG
     org.apache.ibatis: debug
     java.sql.PreparedStatement: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB
 

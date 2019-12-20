@@ -1,13 +1,14 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.sysadmin.organization.entity.form.RoleForm;
 import com.springboot.cloud.sysadmin.organization.entity.form.RoleQueryForm;
+import com.springboot.cloud.sysadmin.organization.entity.form.RoleResourceForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import io.swagger.annotations.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/role")
 @Api("role")
-@Slf4j
-public class RoleController {
+public class RoleController  extends BaseController {
 
     @Autowired
     private IRoleService roleService;
@@ -26,7 +26,7 @@ public class RoleController {
     @ApiImplicitParam(name = "roleForm", value = "新增角色form表单", required = true, dataType = "RoleForm")
     @PostMapping
     public Result add(@Valid @RequestBody RoleForm roleForm) {
-        log.debug("name:{}", roleForm);
+        logger.debug("name:{}", roleForm);
         Role role = roleForm.toPo(Role.class);
         return Result.success(roleService.add(role));
     }
@@ -56,7 +56,7 @@ public class RoleController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "角色ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
-        log.debug("get with id:{}", id);
+        logger.debug("get with id:{}", id);
         return Result.success(roleService.get(id));
     }
 
@@ -73,7 +73,7 @@ public class RoleController {
     )
     @GetMapping(value = "/user/{userId}")
     public Result query(@PathVariable String userId) {
-        log.debug("query with userId:{}", userId);
+        logger.debug("query with userId:{}", userId);
         return Result.success(roleService.query(userId));
     }
 
@@ -84,7 +84,19 @@ public class RoleController {
     )
     @PostMapping(value = "/conditions")
     public Result query(@Valid @RequestBody RoleQueryForm roleQueryForm) {
-        log.debug("query with name:{}", roleQueryForm);
+        logger.debug("query with name:{}", roleQueryForm);
         return Result.success(roleService.query(roleQueryForm.getPage(), roleQueryForm.toParam(RoleQueryParam.class)));
     }
+
+    @ApiOperation(value = "添加角色拥有的资源", notes = "添加角色拥有的资源")
+    @ApiImplicitParam(name = "roleResourceForm", value = "角色资源参数", required = true, dataType = "RoleResourceForm")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
+    @PostMapping(value = "/addResourceForRole")
+    public Result addResourceForRole(@Valid @RequestBody RoleResourceForm roleResourceForm) {
+        logger.debug("query with name:{}", roleResourceForm);
+        return Result.success(roleService.addResourceForRole(roleResourceForm.getResourceId(), roleResourceForm.getRoleId()));
+    }
+
 }

@@ -29,4 +29,9 @@ public class BaseException extends RuntimeException {
         super(message, cause);
         this.errorType = errorType;
     }
+
+    public BaseException(ErrorType errorType, Object... args) {
+        super(String.format(errorType.getMesg(), args));
+        this.errorType = errorType;
+    }
 }

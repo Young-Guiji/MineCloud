@@ -55,7 +55,7 @@ logging:
   level:
     org.springframework.web: debug
     java.sql.PreparedStatement: debug
-  path: logs/
+  path: /data/logs/MineCloud/
   file:
     max-size: 1GB
 
