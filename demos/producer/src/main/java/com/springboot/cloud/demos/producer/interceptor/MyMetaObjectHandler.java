@@ -46,6 +46,6 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      * @return 当前操作用户名，若为空置为system
      */
     private String getUsername() {
-        return StringUtils.defaultIfBlank(UserContextHolder.getInstance().getUsername(), BasePo.DEFAULT_USERNAME);
+        return StringUtils.defaultIfBlank(UserContextHolder.getInstance().getName(), BasePo.DEFAULT_USERNAME);
     }
 }

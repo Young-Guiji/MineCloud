@@ -73,7 +73,6 @@ public class MallProductQueryForm extends BaseQueryForm {
 	/**
 	 * 图片地址,json格式,扩展用
 	 */
-	@TableField("sub_images")
 	private String subImages;
 
 	/**

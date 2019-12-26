@@ -15,7 +15,6 @@ package com.springboot.cloud.common.core.aspect;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.springboot.cloud.common.core.annotation.LogAnnotation;
-import com.springboot.cloud.common.core.annotation.OperationLogDto;
 import com.springboot.cloud.common.core.entity.organization.dto.UserLogDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.util.RequestUtil;

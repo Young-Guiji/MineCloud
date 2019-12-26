@@ -3,7 +3,7 @@ package com.springboot.cloud.mallorder.exception;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.entity.mallgoods.dto.GlobalExceptionLogDto;
 import com.springboot.cloud.common.web.exception.DefaultGlobalExceptionHandlerAdvice;
-import com.springboot.cloud.mallorder.service.MallExceptionLogService;
+import com.springboot.cloud.mallorder.provider.ResourceManageFeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,14 +22,14 @@ public class GlobalExceptionHandlerAdvice extends DefaultGlobalExceptionHandlerA
     @Value("${spring.application.name}")
     String applicationName;
     @Autowired
-    private MallExceptionLogService mallExceptionLogService;
+    private ResourceManageFeignService resourceManageFeignService;
 
     @Override
     public Result exception(Exception e) {
         log.info("保存全局异常信息 ex={}", e.getMessage(), e);
         taskExecutor.execute(() -> {
             GlobalExceptionLogDto globalExceptionLogDto = new GlobalExceptionLogDto().getGlobalExceptionLogDto(e, profile, applicationName);
-            mallExceptionLogService.saveAndSendExceptionLog(globalExceptionLogDto);
+            resourceManageFeignService.saveAndSendExceptionLog(globalExceptionLogDto);
         });
 
         return super.exception(e);

@@ -6,7 +6,7 @@ import com.springboot.cloud.common.core.entity.mallgoods.dto.ProductCategoryDto;
 import com.springboot.cloud.common.core.entity.mallgoods.dto.ProductReqDto;
 import com.springboot.cloud.common.core.entity.mallgoods.vo.ProductDetailVo;
 import com.springboot.cloud.common.web.support.BaseController;
-import com.springboot.cloud.malluser.service.MallGoodsService;
+import com.springboot.cloud.malluser.provider.MallGoodsFeignService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.util.List;
 public class MallAuthController extends BaseController {
 
     @Autowired
-    private MallGoodsService mallGoodsService;
+    private MallGoodsFeignService mallGoodsService;
 
     /**
      * 查询商品列表.

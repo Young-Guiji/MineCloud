@@ -30,7 +30,7 @@ public class ProductDto implements Serializable {
 	@ApiModelProperty("货品ID")
 	private String id;
 	@ApiModelProperty("分类ID")
-	private Long categoryId;
+	private String categoryId;
 	private String name;
 	@ApiModelProperty("子标题")
 	private String subtitle;

@@ -16,6 +16,7 @@ import com.springboot.auth.authorization.validate.code.AbstractValidateCodeProce
 import com.springboot.auth.authorization.validate.code.ValidateCode;
 import com.springboot.auth.authorization.validate.code.ValidateCodeGenerator;
 import com.springboot.auth.authorization.validate.code.ValidateCodeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;

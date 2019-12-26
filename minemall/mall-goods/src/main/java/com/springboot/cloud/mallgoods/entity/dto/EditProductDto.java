@@ -82,7 +82,7 @@ public class EditProductDto implements Serializable {
 	/**
 	 * 商品图片流水号集合
 	 */
-	private List<Long> attachmentIdList;
+	private List<String> attachmentIdList;
 
 	/**
 	 * 商品详情

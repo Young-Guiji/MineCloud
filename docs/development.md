@@ -31,9 +31,6 @@
 │   ├── hystrix-dashboard  --hystrix监控
 │   ├── turbine            --turbine监控聚集 
 │   └── pom.xml
-├── webapps              --web项目的基础父工程，定义常用依赖等
-│   ├── webapp-parent      --web项目的父工程，新建业务应用父工程
-│   └── pom.xml
 ├── docs                 --文档及资源文件
 ├── data                 --server及服务数据存储目录
 │   ├── elasticsearch      --elasticsearch配置数据存储位置

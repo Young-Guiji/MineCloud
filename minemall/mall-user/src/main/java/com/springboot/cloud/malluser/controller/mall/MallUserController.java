@@ -3,10 +3,9 @@ package com.springboot.cloud.malluser.controller.mall;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.web.support.BaseController;
-import com.springboot.cloud.malluser.service.OrganizationService;
+import com.springboot.cloud.malluser.provider.OrganizationFeignService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MallUserController extends BaseController {
 
     @Autowired
-    private OrganizationService organizationService;
+    private OrganizationFeignService organizationService;
 
     /**
      * 更新用户信息.

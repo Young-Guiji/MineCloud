@@ -18,7 +18,7 @@ import com.springboot.cloud.mallorder.entity.po.MallCar;
 import com.springboot.cloud.mallorder.entity.po.MallOrderDetail;
 import com.springboot.cloud.mallorder.mapper.MallCarMapper;
 import com.springboot.cloud.mallorder.service.IMallCarService;
-import com.springboot.cloud.mallorder.service.MallGoodsService;
+import com.springboot.cloud.mallorder.provider.MallGoodsFeignService;
 import com.springboot.cloud.util.BigDecimalUtil;
 import com.springboot.cloud.util.PublicUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ import java.util.List;
 public class CarServiceImpl implements IMallCarService {
 
     @Autowired
-    private MallGoodsService mallGoodsService;
+    private MallGoodsFeignService mallGoodsService;
     @Autowired
     private MallCarMapper mallCarMapper;
 

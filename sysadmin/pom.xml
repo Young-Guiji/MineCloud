@@ -11,13 +11,37 @@
     <description>Demo Sysadmin project for Spring Boot</description>
 
     <parent>
-        <artifactId>webapp-parent</artifactId>
         <groupId>com.springboot.cloud</groupId>
+        <artifactId>cloud</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../webapps/webapp-parent/pom.xml</relativePath>
     </parent>
 
     <modules>
         <module>organization</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.springboot.cloud</groupId>
+            <artifactId>web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/java/</directory>
+                <includes>
+                    <!-- 把mapper文件打入jar -->
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

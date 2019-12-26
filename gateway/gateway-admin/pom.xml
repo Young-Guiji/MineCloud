@@ -11,14 +11,32 @@
     <description>Demo Gateway Admin project for Spring Cloud</description>
 
     <parent>
-        <artifactId>webapp-parent</artifactId>
         <groupId>com.springboot.cloud</groupId>
+        <artifactId>gateway</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../webapps/webapp-parent/pom.xml</relativePath>
     </parent>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.springboot.cloud</groupId>
+            <artifactId>web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--数据库-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.39</version>
+        </dependency>
+        <!--Redis缓存-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

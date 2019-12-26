@@ -36,5 +36,5 @@ public class ProductDetailVo implements Serializable {
 	private Integer stock;
 	private Integer status;
 	private String imageHost;
-	private Long pid;
+	private String pid;
 }

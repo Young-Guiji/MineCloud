@@ -1,26 +1,31 @@
 package com.springboot.cloud.mallgoods.service.impl;
 
-import cn.hutool.json.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.constant.GlobalConstant;
-import com.springboot.cloud.common.core.entity.dto.ElementImgUrlDto;
+import com.springboot.cloud.common.core.constant.MqTopicConstants;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
+import com.springboot.cloud.common.core.entity.resourcemanage.dto.UpdateAttachmentDto;
+import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.common.core.util.SnowflakeIdWorker;
 import com.springboot.cloud.mallgoods.entity.dto.EditProductDto;
 import com.springboot.cloud.mallgoods.entity.form.MallProductQueryForm;
 import com.springboot.cloud.mallgoods.entity.po.MallProduct;
 import com.springboot.cloud.mallgoods.entity.po.MallProductCategory;
+import com.springboot.cloud.common.core.message.entity.po.MqMessageData;
 import com.springboot.cloud.mallgoods.entity.vo.ProductVo;
+import com.springboot.cloud.mallgoods.manager.ProductManager;
 import com.springboot.cloud.mallgoods.mapper.MallProductMapper;
 import com.springboot.cloud.mallgoods.service.IAdminProductService;
 import com.springboot.cloud.mallgoods.service.IMallProductCategoryService;
 import com.springboot.cloud.util.PublicUtil;
 import com.springboot.cloud.util.RedisKeyUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +35,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
+@Slf4j
 public class AdminProductServiceImpl implements IAdminProductService {
 
     @Autowired
@@ -38,6 +44,8 @@ public class AdminProductServiceImpl implements IAdminProductService {
     private IMallProductCategoryService mallProductCategoryService;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private ProductManager productManager;
 
     @Override
     public Page<ProductVo> queryProductListWithPage(MallProductQueryForm mallProductQueryForm) {
@@ -82,7 +90,7 @@ public class AdminProductServiceImpl implements IAdminProductService {
         List<String> categoryIdList = editProductDto.getCategoryIdList();
         String categoryId = categoryIdList.get(categoryIdList.size() - 1);
         product.setCategoryId(categoryId);
-        List<Long> attachmentIdList = editProductDto.getAttachmentIdList();
+        List<String> attachmentIdList = editProductDto.getAttachmentIdList();
         if (PublicUtil.isNotEmpty(attachmentIdList)) {
             product.setMainImage(String.valueOf(attachmentIdList.get(0)));
             product.setSubImages(Joiner.on(GlobalConstant.Symbol.COMMA).join(attachmentIdList));
@@ -94,18 +102,27 @@ public class AdminProductServiceImpl implements IAdminProductService {
             Preconditions.checkArgument(StringUtils.isNotEmpty(productCode), SystemErrorType.GOOD10021024);
         }
         product.setProductCode(productCode);
-        UpdateAttachmentDto updateAttachmentDto = new UpdateAttachmentDto(productCode, attachmentIdList, loginUserInfo);
+        UpdateAttachmentDto updateAttachmentDto = new UpdateAttachmentDto(productCode, attachmentIdList);
 
-        String body = objectMapper.writeValueAsString(updateAttachmentDto);
+        String body = null;
+        try {
+            body = objectMapper.writeValueAsString(updateAttachmentDto);
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+            new ServiceException(SystemErrorType.SYSTEM_ERROR);
+        }
+        String queue = MqTopicConstants.MqTagEnum.UPDATE_ATTACHMENT.getQueue();
+        String tag = MqTopicConstants.MqTagEnum.UPDATE_ATTACHMENT.getTag();
+        String key = RedisKeyUtil.createMqKey(queue, tag, product.getProductCode(), body);
 
         if (null==product.getId() && PublicUtil.isNotEmpty(attachmentIdList)) {
-            mqMessageData = new MqMessageData(body, topic, tag, key);
-            mdcProductManager.saveProduct(mqMessageData, product, true);
+            mqMessageData = new MqMessageData(body, queue, tag, key);
+            productManager.saveProduct(mqMessageData, product, true);
         } else if (null==product.getId() && PublicUtil.isEmpty(attachmentIdList)) {
             mallProductMapper.insert(product);
         } else {
-            mqMessageData = new MqMessageData(body, topic, tag, key);
-            mdcProductManager.saveProduct(mqMessageData, product, false);
+            mqMessageData = new MqMessageData(body, queue, tag, key);
+            productManager.saveProduct(mqMessageData, product, false);
         }
     }
 

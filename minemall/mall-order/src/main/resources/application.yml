@@ -6,6 +6,8 @@ eureka:
     serviceUrl:
       defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 spring:
+  profiles:
+    active: dev
   application:
     name: mall-order
   datasource:

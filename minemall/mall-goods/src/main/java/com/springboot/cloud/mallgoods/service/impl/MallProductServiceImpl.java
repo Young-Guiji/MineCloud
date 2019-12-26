@@ -141,7 +141,7 @@ public class MallProductServiceImpl implements IMallProductService {
         MallProductCategory category = IMallProductCategoryService.getByCategoryId(product.getId());
         if (category == null) {
             //默认根节点
-            productDetailVo.setPid(0L);
+            productDetailVo.setPid("0");
         } else {
             productDetailVo.setPid(category.getPid());
         }
