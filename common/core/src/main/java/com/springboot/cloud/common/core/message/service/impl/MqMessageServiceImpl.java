@@ -7,7 +7,7 @@ import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.common.core.message.entity.enums.MqMessageTypeEnum;
 import com.springboot.cloud.common.core.message.entity.po.MqMessageData;
 import com.springboot.cloud.common.core.message.mapper.MqMessageDataMapper;
-import com.springboot.cloud.common.core.message.service.MessageConfirmFeignClient;
+import com.springboot.cloud.common.core.message.provider.MessageConfirmFeignClient;
 import com.springboot.cloud.common.core.message.service.MqMessageService;
 import com.springboot.cloud.common.core.util.SnowflakeIdWorker;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,7 @@
-package com.springboot.cloud.common.core.message.service;
+package com.springboot.cloud.common.core.message.provider;
 
 import com.springboot.cloud.common.core.entity.message.dto.MqMessageDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
-import com.springboot.cloud.common.core.message.service.hystrix.MessageConfirmFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
