@@ -11,7 +11,7 @@ spring:
   application:
     name: mall-user
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:10.203.72.183}:${DATASOURCE_PORT:3306}/mall_user?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root}
@@ -49,7 +49,7 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath*:com/springboot/cloud/**/mapper/*Mapper.xml
-  type-aliases-package: com.springboot.cloud.**.entity
+  type-aliases-package: com.springboot.cloud.**.po
   configuration:
     map-underscore-to-camel-case: true
 

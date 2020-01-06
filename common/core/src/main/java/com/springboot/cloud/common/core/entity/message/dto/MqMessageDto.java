@@ -10,7 +10,8 @@ public class MqMessageDto implements Serializable {
 
     private static final long serialVersionUID = -6980935654952282538L;
 
-    /**
+     private String id;
+     /**
      * 生产者组
      */
     private String producerGroup;

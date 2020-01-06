@@ -56,6 +56,14 @@ public enum SystemErrorType implements ErrorType {
 
     MESSAGE100500015("10050015", "消息PID不能为空, messageKey=%s"),
 
+    MESSAGE100500030("10050030", "定时任务 targetClass:{%s} 已存在，请勿重复创建 !"),
+
+    MESSAGE100500031("10050031", "触发器 triggerName:{%s} 已存在，请勿重复创建 !"),
+
+    MESSAGE100500032("10050032", "修改任务失败"),
+
+    MESSAGE100500033("10050033", "查询批处理任务失败"),
+
     INVALID_HEADER("10011040", "解析header失败");
 
     /**

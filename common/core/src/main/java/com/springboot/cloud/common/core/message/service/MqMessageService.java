@@ -8,4 +8,6 @@ public interface MqMessageService {
     void saveMqProducerMessage(MqMessageData mqMessageData);
 
     void confirmAndSendMessage(String messageKey);
+
+    MqMessageData getMessgeByMessageKey(String messageKey);
 }

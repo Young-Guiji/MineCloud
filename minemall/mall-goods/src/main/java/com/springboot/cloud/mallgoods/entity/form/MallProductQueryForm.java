@@ -11,15 +11,9 @@
 
 package com.springboot.cloud.mallgoods.entity.form;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.springboot.cloud.common.core.entity.form.BaseForm;
 import com.springboot.cloud.common.core.entity.form.BaseQueryForm;
-import com.springboot.cloud.common.core.entity.po.BasePo;
-import com.springboot.cloud.mallgoods.entity.po.MallProduct;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.ibatis.type.Alias;
 
 import java.math.BigDecimal;
 

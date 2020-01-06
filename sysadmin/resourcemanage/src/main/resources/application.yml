@@ -1,5 +1,5 @@
 server:
-  port: 31004
+  port: 31005
 
 eureka:
   client:
@@ -9,7 +9,7 @@ spring:
   application:
     name: resource-manage
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:10.203.72.183}:${DATASOURCE_PORT:3306}/resource_manage?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root}
@@ -19,6 +19,9 @@ spring:
     username: ${RABBIT_MQ_USERNAME:mine}
     password: ${RABBIT_MQ_PASSWORD:mine}
     virtual-host: ${RABBIT_MQ_VIRTUAL:/mine}
+  redis:
+    host: ${REDIS_HOST:10.203.72.183}
+    port: ${REDIS_PORT:6379}
 #  cloud:
 #    stream:
 #      bindings:

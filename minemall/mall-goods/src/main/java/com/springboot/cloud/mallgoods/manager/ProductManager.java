@@ -37,6 +37,7 @@ public class ProductManager {
                 throw new ServiceException(SystemErrorType.GOOD10021022, product.getId());
             }
         }
+
     }
 
     /**

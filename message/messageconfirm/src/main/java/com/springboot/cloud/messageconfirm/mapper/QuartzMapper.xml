@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.cloud.messageconfirm.mapper.QuartzMapper" >
+
+    <select id ="findJobDetails" resultType="com.springboot.cloud.messageconfirm.entity.vo.QuartzJob">
+      select sched_name as schedulerName,job_name as jobName,job_group as jobGroup,job_class_name as jobClass,description
+      from QRTZ_JOB_DETAILS tb
+      <where>
+         <if test = "jobQueryForm.schedulerName !='' and jobQueryForm.schedulerName != null">
+            and tb.sched_name = #{jobQueryForm.schedulerName}
+         </if>
+         <if test = "jobQueryForm.jobName !='' and jobQueryForm.jobName != null">
+            and tb.job_name like '%'||#{jobQueryForm.jobName}||'%'
+         </if>
+         <if test = "jobQueryForm.jobGroup !='' and jobQueryForm.jobGroup != null">
+            and tb.job_group like '%'||#{jobQueryForm.jobGroup}||'%'
+         </if>
+         <if test = "jobQueryForm.jobClassName !='' and jobQueryForm.jobClassName != null">
+            and tb.job_class_name like '%'||#{jobQueryForm.jobClassName}||'%'
+         </if>
+      </where>
+      order by tb.job_name
+    </select>
+
+
+</mapper>

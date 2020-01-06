@@ -5,18 +5,20 @@ import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.messageconfirm.config.mq.SendFactory;
 import com.springboot.cloud.messageconfirm.entity.po.MqMessage;
+import com.springboot.cloud.messageconfirm.entity.vo.MessageVo;
 import com.springboot.cloud.messageconfirm.enums.MqSendStatusEnum;
 import com.springboot.cloud.messageconfirm.mapper.MessageConfirmMapper;
-import com.springboot.cloud.messageconfirm.service.MessageConfirmService;
+import com.springboot.cloud.messageconfirm.service.IMessageConfirmService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
-public class MessageConfirmServiceImpl implements MessageConfirmService {
+public class MessageConfirmServiceImpl implements IMessageConfirmService {
 
     @Autowired
     private MessageConfirmMapper messageConfirmMapper;
@@ -54,5 +56,20 @@ public class MessageConfirmServiceImpl implements MessageConfirmService {
         BeanUtils.copyProperties(message,messageDto);
         sendFactory.createProductPicSendMessage().send(messageDto);
 
+    }
+
+    @Override
+    public void confirmFinishMessage(String messageKey) {
+        messageConfirmMapper.confirmFinishMessage(messageKey);
+    }
+
+    @Override
+    public List<MessageVo> selectNotConfirmMessage() {
+        return messageConfirmMapper.selectNotConfirmMessage();
+    }
+
+    @Override
+    public void updateMessageStatusById(String id) {
+        messageConfirmMapper.updateMessageStatusById(id);
     }
 }

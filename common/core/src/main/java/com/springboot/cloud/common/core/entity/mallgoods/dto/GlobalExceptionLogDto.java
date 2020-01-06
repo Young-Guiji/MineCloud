@@ -57,7 +57,6 @@ public class GlobalExceptionLogDto {
 	 * 异常类型
 	 */
 	private String exceptionSimpleName;
-
 	/**
 	 * 异常堆栈信息
 	 */

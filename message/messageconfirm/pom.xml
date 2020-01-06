@@ -14,4 +14,13 @@
     <name>message-confirm</name>
     <description>Demo project for Spring Boot</description>
 
+
+    <dependencies>
+        <!-- quartz依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

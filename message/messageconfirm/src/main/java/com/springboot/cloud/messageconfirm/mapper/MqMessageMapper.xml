@@ -30,7 +30,7 @@
     ${alias}.id,
     ${alias}.version,
     ${alias}.message_key,
-    ${alias}.message_topic,
+    ${alias}.message_queue,
     ${alias}.message_tag,
     ${alias}.message_type,
     ${alias}.producer_group,
@@ -54,8 +54,13 @@
   </sql>
   <update id="addTaskExeCountById">
     UPDATE pc_mq_message
-    SET resend_times = resend_times + 1, update_time = now()
+    SET resend_times = resend_times + 1, updated_time = now()
     WHERE id = #{messageId}
+  </update>
+  <update id="confirmFinishMessage">
+    UPDATE pc_mq_message
+    SET updated_time = now(), message_status = 30
+    WHERE message_key = #{messageKey}
   </update>
   <update id="updateAlreadyDeadByMessageId">
     UPDATE pc_mq_message
@@ -126,7 +131,7 @@
     AND message.message_status = #{messageStatus}
     AND message.created_time &lt; #{createTimeBefore}
     AND message.yn = 0
-    ORDER BY update_time
+    ORDER BY updated_time
     LIMIT ${fetchNum}
   </select>
   <select id="listReliableMessageVoWithPage" resultType="com.springboot.cloud.messageconfirm.entity.vo.MessageVo">
@@ -144,8 +149,8 @@
     <if test="messageKey != null and messageKey !=''">
       AND message.message_key LIKE concat('%', #{messageKey,jdbcType=VARCHAR}, '%')
     </if>
-    <if test="messageTopic != null and messageTopic !=''">
-      AND message.message_topic = #{messageTopic,jdbcType=VARCHAR}
+    <if test="messageQueue != null and messageQueue !=''">
+      AND message.message_queue = #{messageQueue,jdbcType=VARCHAR}
     </if>
     <if test="messageTag != null and messageTag !=''">
       AND message.message_tag = #{messageTag,jdbcType=VARCHAR}
@@ -159,38 +164,16 @@
     <if test="startQueryTime != null and endQueryTime != null">
       AND message.created_time BETWEEN #{startQueryTime} AND #{endQueryTime}
     </if>
-    ORDER BY update_time desc
+    ORDER BY updated_time desc
   </select>
 
-<!--  <resultMap id="TpcMqConsumerVoResultMap" extends="ResultMapWithBLOBs" type="com.springboot.cloud.messageconfirm.entity.vo.MessageVo">-->
-<!--    <collection property="mqConfirmVoList" ofType="com.springboot.cloud.messageconfirm.entity.vo.MqConfirmVo">-->
-<!--      <result property="consumerCode" column="consumerCode"/>-->
-<!--      <result property="consumeCount" column="consumeCount"/>-->
-<!--      <result property="createdTime" column="confirmCreatedTime"/>-->
-<!--      <result property="updateTime" column="confirmUpdateTime"/>-->
-<!--      <result property="status" column="confirmStatus"/>-->
-<!--    </collection>-->
-<!--  </resultMap>-->
+  <select id="selectNotConfirmMessage" resultType="com.springboot.cloud.messageconfirm.entity.vo.MessageVo">
+    select * from pc_mq_message where message_status !=30 and resend_times &lt; 3 and created_time &lt; date_sub(now(), interval 5 minute);
+  </select>
+  <update id="updateMessageStatusById">
+    UPDATE pc_mq_message
+    SET updated_time = now(), message_status = 20
+    WHERE id = #{id}
+  </update>
 
-<!--  <select id="listReliableMessageVo" resultMap="TpcMqConsumerVoResultMap">-->
-<!--    SELECT-->
-<!--    confirm.consumer_code as consumerCode,-->
-<!--    confirm.consume_count as consumeCount,-->
-<!--    confirm.created_time AS confirmCreatedTime,-->
-<!--    confirm.update_time AS confirmUpdateTime,-->
-<!--    confirm.status as confirmStatus,-->
-<!--    <include refid="Base_Column_List">-->
-<!--      <property name="alias" value="message"/>-->
-<!--    </include>-->
-<!--    ,-->
-<!--    <include refid="Blob_Column_List">-->
-<!--      <property name="alias" value="message"/>-->
-<!--    </include>-->
-<!--    from pc_mq_message message-->
-<!--    LEFT JOIN pc_tpc_mq_confirm confirm on message.id = confirm.message_id-->
-<!--    WHERE message.id IN-->
-<!--    <foreach collection="messageIdList" item="item" index="index" open="(" separator="," close=")">-->
-<!--      #{item}-->
-<!--    </foreach>-->
-<!--  </select>-->
 </mapper>

@@ -33,15 +33,15 @@ import java.util.List;
 public class MallProductController extends BaseController {
 
     @Autowired
-    private IMallProductService productService;
+    private IMallProductService mallProductService;
     @Autowired
-    private IMallProductCategoryService IMallProductCategoryService;
+    private IMallProductCategoryService mallProductCategoryService;
 
     @ApiOperation(httpMethod = "GET", value = "根据商品ID查询商品详细信息")
     @GetMapping(value = "/getProductDetail")
     public Result<ProductDetailVo> getProductDetail(String productId) {
         logger.info("根据商品ID查询商品详细信息. productId={}", productId);
-        ProductDetailVo productDto = productService.getProductDetail(productId);
+        ProductDetailVo productDto = mallProductService.getProductDetail(productId);
         return Result.success(productDto);
     }
 
@@ -50,7 +50,7 @@ public class MallProductController extends BaseController {
     public ProductDto getProductById(String productId) {
         logger.info("根据商品ID查询商品信息. productId={}", productId);
         ProductDto productDto = null;
-        MallProduct product = productService.getProductById(productId);
+        MallProduct product = mallProductService.getProductById(productId);
         if (PublicUtil.isNotEmpty(product)) {
             productDto = new ProductDto();
             BeanUtils.copyProperties(product, productDto);
@@ -73,16 +73,16 @@ public class MallProductController extends BaseController {
         List<String> categoryIdList = Lists.newArrayList();
 
         if (categoryId != null) {
-            MallProductCategory category = IMallProductCategoryService.selectByKey(categoryId);
+            MallProductCategory category = mallProductCategoryService.selectByKey(categoryId);
             if (category == null && StringUtils.isBlank(keyword)) {
                 // 没有该分类,并且还没有关键字,这个时候返回一个空的结果集,不报错
                 return Result.success(new Page());
             }
-            categoryIdList = IMallProductCategoryService.selectCategoryAndChildrenById(categoryId);
+            categoryIdList = mallProductCategoryService.selectCategoryAndChildrenById(categoryId);
         }
 
         //排序处理
-        IPage<ProductDto> page = productService.selectByNameAndCategoryIds(StringUtils.isBlank(keyword) ? null : keyword, PublicUtil.isEmpty(categoryIdList) ? null : categoryIdList, orderBy,productReqDto.getPage());
+        IPage<ProductDto> page = mallProductService.selectByNameAndCategoryIds(StringUtils.isBlank(keyword) ? null : keyword, PublicUtil.isEmpty(categoryIdList) ? null : categoryIdList, orderBy,productReqDto.getPage());
 
 //        List<ProductDto> productListVoList = Lists.newArrayList();
 //        for (MallProduct product : page.getRecords()) {

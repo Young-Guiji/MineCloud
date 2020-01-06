@@ -6,9 +6,10 @@ import com.springboot.cloud.mallgoods.entity.form.MallProductQueryForm;
 import com.springboot.cloud.mallgoods.entity.po.MallProduct;
 import com.springboot.cloud.mallgoods.entity.vo.ProductVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MallProductMapper extends BaseMapper<MallProduct> {
 
-    Page<ProductVo> queryProductListWithPage(com.baomidou.mybatisplus.extension.plugins.pagination.Page page, MallProductQueryForm mallProductQueryForm);
+    Page<ProductVo> queryProductListWithPage(Page page, @Param("mallProductQueryForm") MallProductQueryForm mallProductQueryForm);
 }

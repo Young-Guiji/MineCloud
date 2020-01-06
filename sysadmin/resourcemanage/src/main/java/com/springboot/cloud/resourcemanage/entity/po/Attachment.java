@@ -23,7 +23,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_opt_attachment")
+@TableName("pc_attachment")
 public class Attachment extends BasePo {
 
 	private static final long serialVersionUID = -2419047791219240612L;

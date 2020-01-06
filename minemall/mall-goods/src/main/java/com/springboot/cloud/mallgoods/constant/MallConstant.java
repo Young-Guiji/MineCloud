@@ -17,6 +17,7 @@ package com.springboot.cloud.mallgoods.constant;
  * @author guiji
  */
 public class MallConstant {
+
 	/**
 	 * The enum MallProduct status enum.
 	 *

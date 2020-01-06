@@ -1,6 +1,7 @@
 package com.springboot.cloud.resourcemanage.events;
 
 import com.google.common.base.Preconditions;
+import com.springboot.cloud.common.core.annotation.MqConsumerStore;
 import com.springboot.cloud.common.core.constant.MqTopicConstants;
 import com.springboot.cloud.common.core.entity.message.dto.MqMessageDto;
 import com.springboot.cloud.resourcemanage.service.AttachmentService;
@@ -26,28 +27,27 @@ public class MessageReceive {
 
 
     @RabbitListener(queues = MqTopicConstants.SEND_SMS_QUEUE)
-    public void processSMS(Object mqMessage) {
+    public void processSMS(MqMessageDto mqMessage) {
         log.info("SMSReceive"+ mqMessage);
         processMessage(mqMessage);
     }
 
     @RabbitListener(queues = MqTopicConstants.PRODUCT_PIC_QUEUE)
-//    @MqConsumerStore
-    public String processProductPic(Object mqMessage) {
+    @MqConsumerStore
+    public void processProductPic(MqMessageDto mqMessage) {
         log.info("ProductPicReceive"+ mqMessage);
-        return processMessage(mqMessage);
+
+        processMessage(mqMessage);
     }
 
-    private String processMessage(Object mqMessage) {
+    private void processMessage(MqMessageDto mqMessage) {
 
-        MqMessageDto messageDto = (MqMessageDto) mqMessage;
+        this.checkMessage(mqMessage);
 
-        this.checkMessage(messageDto);
-
-        String body = messageDto.getMessageBody();
-        String queue = messageDto.getMessageQueue();
-        String tags = messageDto.getMessageTag();
-        String key = messageDto.getMessageKey();
+        String body = mqMessage.getMessageBody();
+        String queue = mqMessage.getMessageQueue();
+        String tags = mqMessage.getMessageTag();
+        String key = mqMessage.getMessageKey();
 
         log.info("MQ消费queue={},tag={},key={}", queue, tags, key);
         ValueOperations<String, Object> ops = redisTemplate.opsForValue();
@@ -58,7 +58,6 @@ public class MessageReceive {
         }
         if (PublicUtil.isNotEmpty(mqKV)) {
             log.error("MQ消费queue={},tag={},key={}, 重复消费", queue, tags, key);
-            return "CONSUME_SUCCESS";
         }
         log.info("MQ消费queue={},tag={},key={}", queue, tags, key);
 
@@ -68,7 +67,6 @@ public class MessageReceive {
 
         }
         ops.set(key, key, 10, TimeUnit.DAYS);
-        return "CONSUME_SUCCESS";
     }
 
     private void checkMessage(MqMessageDto messageDto) {

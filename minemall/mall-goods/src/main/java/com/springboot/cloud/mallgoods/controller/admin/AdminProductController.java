@@ -2,7 +2,6 @@ package com.springboot.cloud.mallgoods.controller.admin;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.common.core.annotation.LogAnnotation;
-import com.springboot.cloud.common.core.entity.mallgoods.dto.ProductDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.mallgoods.entity.dto.EditProductDto;
@@ -63,7 +62,7 @@ public class AdminProductController extends BaseController {
     @PostMapping(value = "/save")
     @ApiOperation(httpMethod = "POST", value = "编辑商品")
     @LogAnnotation
-    public Result saveCategory(@RequestBody EditProductDto editProductDto) {
+    public Result saveProduct(@RequestBody EditProductDto editProductDto) {
         logger.info("编辑商品. editProductDto={}", editProductDto);
         adminProductService.saveProduct(editProductDto, getLoginUserInfo());
         return Result.success();

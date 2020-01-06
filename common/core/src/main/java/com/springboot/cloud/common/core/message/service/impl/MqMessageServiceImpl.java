@@ -6,8 +6,9 @@ import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.common.core.message.entity.enums.MqMessageTypeEnum;
 import com.springboot.cloud.common.core.message.entity.po.MqMessageData;
+
 import com.springboot.cloud.common.core.message.mapper.MqMessageDataMapper;
-import com.springboot.cloud.common.core.message.provider.MessageConfirmFeignClient;
+import com.springboot.cloud.common.core.message.provider.MessageConfirmFeignService;
 import com.springboot.cloud.common.core.message.service.MqMessageService;
 import com.springboot.cloud.common.core.util.SnowflakeIdWorker;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class MqMessageServiceImpl implements MqMessageService {
     @Autowired
     private MqMessageDataMapper mqMessageDataMapper;
     @Autowired
-    private MessageConfirmFeignClient messageConfirmService;
+    private MessageConfirmFeignService messageConfirmService;
 
     @Override
     public void saveMqProducerMessage(MqMessageData mqMessageData) {
@@ -47,6 +48,11 @@ public class MqMessageServiceImpl implements MqMessageService {
     }
 
     @Override
+    public MqMessageData getMessgeByMessageKey(String messageKey) {
+        return mqMessageDataMapper.getMessgeByMessageKey(messageKey);
+    }
+
+    @Override
     public void saveWaitConfirmMessage(MqMessageData mqMessageData) {
         this.saveMqProducerMessage(mqMessageData);
         MqMessageDto mqMessageDto = mqMessageData.getMqMessageDto();
@@ -61,7 +67,7 @@ public class MqMessageServiceImpl implements MqMessageService {
         String messageQueue = mqMessageData.getMessageQueue();
         String messageBody = mqMessageData.getMessageBody();
         String messageKey = mqMessageData.getMessageKey();
-        String producerGroup = mqMessageData.getProducerGroup();
+//        String producerGroup = mqMessageData.getProducerGroup();
         if (StringUtils.isEmpty(messageKey)) {
             throw new ServiceException(SystemErrorType.MESSAGE10050009);
         }
@@ -71,9 +77,9 @@ public class MqMessageServiceImpl implements MqMessageService {
         if (StringUtils.isEmpty(messageBody)) {
             throw new ServiceException(SystemErrorType.MESSAGE10050008, mqMessageData.getMessageKey());
         }
-
-        if (StringUtils.isEmpty(producerGroup)) {
-            throw new ServiceException(SystemErrorType.MESSAGE100500015, mqMessageData.getMessageKey());
-        }
+//
+//        if (StringUtils.isEmpty(producerGroup)) {
+//            throw new ServiceException(SystemErrorType.MESSAGE100500015, mqMessageData.getMessageKey());
+//        }
     }
 }

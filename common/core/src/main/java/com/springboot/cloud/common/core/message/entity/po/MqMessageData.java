@@ -79,11 +79,12 @@ public class MqMessageData extends BasePo {
 	@TableField(exist = false)
 	private String producerGroup;
 
-	public MqMessageData(final String msgBody, final String queue, final String tag, final String key) {
+	public MqMessageData(final String msgBody, final String queue, final String tag, final String key,final String producerGroup) {
 		this.messageBody = msgBody;
 		this.messageQueue = queue;
 		this.messageTag = tag;
 		this.messageKey = key;
+		this.producerGroup = producerGroup;
 	}
 
 	/**

@@ -33,7 +33,7 @@ public class MessageVo extends BaseVo {
 	/**
 	 * topic
 	 */
-	private String messageTopic;
+	private String messageQueue;
 
 	/**
 	 * tag

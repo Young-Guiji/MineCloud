@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MqMessageDataMapper extends BaseMapper<MqMessageData> {
+    MqMessageData getMessgeByMessageKey(String messageKey);
 }

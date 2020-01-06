@@ -21,7 +21,7 @@ import java.util.List;
 public class MallProductCategoryController extends BaseController {
 
     @Autowired
-    private IMallProductCategoryService IMallProductCategoryService;
+    private IMallProductCategoryService mallProductCategoryService;
 
     @ApiOperation(httpMethod = "POST", value = "获取商品品类信息")
     @PostMapping(value = "/getProductCategoryDtoByPid")
@@ -31,13 +31,13 @@ public class MallProductCategoryController extends BaseController {
         if ("0".equals(pid)) {
             // 查询所有一级分类
 
-            list = IMallProductCategoryService.getCategoryDtoList(pid);
+            list = mallProductCategoryService.getCategoryDtoList(pid);
             for (ProductCategoryDto productCategoryDto : list) {
                 String categoryPid = productCategoryDto.getCategoryId();
                 if (PublicUtil.isEmpty(categoryPid)) {
                     continue;
                 }
-                List<ProductCategoryDto> product2CategoryDtoList = IMallProductCategoryService.getCategoryDtoList(categoryPid);
+                List<ProductCategoryDto> product2CategoryDtoList = mallProductCategoryService.getCategoryDtoList(categoryPid);
                 if (product2CategoryDtoList.size() > 5) {
                     product2CategoryDtoList = product2CategoryDtoList.subList(0, 4);
                 }
@@ -46,7 +46,7 @@ public class MallProductCategoryController extends BaseController {
 
         } else {
             // 根据分类ID 查询分类下的所有二级分类
-            list = IMallProductCategoryService.getCategoryDtoList(pid);
+            list = mallProductCategoryService.getCategoryDtoList(pid);
         }
 
         return Result.success(list);

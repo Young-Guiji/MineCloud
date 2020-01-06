@@ -7,6 +7,7 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.constant.GlobalConstant;
+import com.springboot.cloud.common.core.constant.MessageGroupConstants;
 import com.springboot.cloud.common.core.constant.MqTopicConstants;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.UpdateAttachmentDto;
@@ -116,12 +117,12 @@ public class AdminProductServiceImpl implements IAdminProductService {
         String key = RedisKeyUtil.createMqKey(queue, tag, product.getProductCode(), body);
 
         if (null==product.getId() && PublicUtil.isNotEmpty(attachmentIdList)) {
-            mqMessageData = new MqMessageData(body, queue, tag, key);
+            mqMessageData = new MqMessageData(body, queue, tag, key, MessageGroupConstants.GOODS_GROUP);
             productManager.saveProduct(mqMessageData, product, true);
         } else if (null==product.getId() && PublicUtil.isEmpty(attachmentIdList)) {
             mallProductMapper.insert(product);
         } else {
-            mqMessageData = new MqMessageData(body, queue, tag, key);
+            mqMessageData = new MqMessageData(body, queue, tag, key, MessageGroupConstants.GOODS_GROUP);
             productManager.saveProduct(mqMessageData, product, false);
         }
     }

@@ -1,19 +1,19 @@
 package com.springboot.cloud.messageconfirm.config.mq;
 
 import com.springboot.cloud.common.core.constant.MqTopicConstants;
-import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 public class SMSSendMessage implements SendMessage{
 
-    private AmqpTemplate amqpTemplate;
+    private RabbitTemplate rabbitTemplate;
 
-    public SMSSendMessage(AmqpTemplate amqpTemplate){
-        this.amqpTemplate = amqpTemplate;
+    public SMSSendMessage(RabbitTemplate rabbitTemplate){
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
     public void send(Object message) {
-        amqpTemplate.convertAndSend(MqTopicConstants.MqTopicEnum.SEND_SMS_QUEUE.getExchange(),
+        rabbitTemplate.convertAndSend(MqTopicConstants.MqTopicEnum.SEND_SMS_QUEUE.getExchange(),
                 MqTopicConstants.MqTopicEnum.SEND_SMS_QUEUE.getQueue(),
                 message);
     }
