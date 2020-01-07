@@ -2,7 +2,6 @@ package com.springboot.cloud.mallorder.provider;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.entity.mallgoods.dto.GlobalExceptionLogDto;
-import com.springboot.cloud.mallorder.provider.ResourceManageFeignService;
 import org.springframework.stereotype.Component;
 
 @Component
