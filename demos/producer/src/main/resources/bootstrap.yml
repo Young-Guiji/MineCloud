@@ -5,7 +5,7 @@ spring:
     config:
       name: eureka-producer
       label: master
-      profile: test
+      profile: TreeSerache
       enabled: true
       fail-fast: false
       retry:

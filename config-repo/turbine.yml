@@ -1,0 +1,19 @@
+spring:
+#  cloud:
+#    stream:
+#      bindings:
+#        turbineStreamInput:
+#          destination: "minemine"
+
+turbine:
+  stream:
+    port: 8030
+#    destination: "minemine"
+
+management:
+  server:
+    port: 8030
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,26 +1,12 @@
-server:
-  port: 31002
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 spring:
-  profiles:
-    active: dev
-  application:
-    name: mall-goods
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:10.203.72.183}:${DATASOURCE_PORT:3306}/mall_goods?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:10.203.72.183}:${DATASOURCE_PORT:3306}/resource_manage?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root}
-  rabbitmq:
-    host: ${RABBIT_MQ_HOST:10.203.72.183}
-    port: ${RABBIT_MQ_PORT:5672}
-    username: ${RABBIT_MQ_USERNAME:mine}
-    password: ${RABBIT_MQ_PASSWORD:mine}
-    virtual-host: ${RABBIT_MQ_VIRTUAL:/mine}
+  redis:
+    host: ${REDIS_HOST:10.203.72.183}
+    port: ${REDIS_PORT:6379}
 #  cloud:
 #    stream:
 #      bindings:
@@ -53,12 +39,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
-logging:
-  level:
-    org.springframework.cloud.sleuth: debug
-  path: /data/logs/MineCloud/
-  file:
-    max-size: 1GB
 #management:
 #  endpoints:
 #    web:

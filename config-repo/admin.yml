@@ -1,0 +1,17 @@
+eureka:
+  instance:
+    metadata-map:
+      user.name: admin
+      user.password: 123456
+spring:
+  redis:
+    host: ${REDIS_HOST:10.203.72.183}
+    port: ${REDIS_PORT:6379}
+    ##password: ${REDIS_PASSWORD:}
+  #spring boot admin的登陆账号和密码配置
+  security:
+    user:
+      name: admin
+      password: 123456
+
+

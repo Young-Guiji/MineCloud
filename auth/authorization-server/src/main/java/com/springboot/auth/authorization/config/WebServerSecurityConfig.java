@@ -49,7 +49,6 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(pcAuthenticationSuccessHandler)
                 .failureHandler(pcAuthenticationFailureHandler)
         .and().apply(validataCodeSecurityConfig);
-
     }
 
     /**

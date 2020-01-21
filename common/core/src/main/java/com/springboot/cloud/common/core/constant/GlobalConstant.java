@@ -36,7 +36,7 @@ public class GlobalConstant {
 	public static final int MAX_IP_LENGTH = 15;
 
 	public static final String DEV_PROFILE = "dev";
-	public static final String TEST_PROFILE = "test";
+	public static final String TEST_PROFILE = "TreeSerache";
 	public static final String PRO_PROFILE = "pro";
 	public static final int TWO_INT = 2;
 	public static final int M_SIZE = 1024;

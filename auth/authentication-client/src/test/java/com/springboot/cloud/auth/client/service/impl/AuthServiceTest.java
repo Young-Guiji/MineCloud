@@ -99,7 +99,7 @@ public class AuthServiceTest {
 
     @Test
     public void testIgnoreAuthentication_假如配置的忽略前缀为oauth和open_当用户请求以oauth开头的url_那么返回返回true() {
-        Assert.assertTrue(authService.ignoreAuthentication("/oauth/token?test=123"));
+        Assert.assertTrue(authService.ignoreAuthentication("/oauth/token?TreeSerache=123"));
     }
 
     @Test
@@ -109,12 +109,12 @@ public class AuthServiceTest {
 
     @Test
     public void testIgnoreAuthentication_假如配置的忽略前缀为oauth和open_当用户请求以test开头的url_那么返回返回true() {
-        Assert.assertFalse(authService.ignoreAuthentication("/test"));
+        Assert.assertFalse(authService.ignoreAuthentication("/TreeSerache"));
     }
 
     @Test
     public void testIgnoreAuthentication_假如配置的忽略前缀为oauth和open_当用户请求以open结尾的url_那么返回返回true() {
-        Assert.assertFalse(authService.ignoreAuthentication("/test/open"));
+        Assert.assertFalse(authService.ignoreAuthentication("/TreeSerache/open"));
     }
 
 }

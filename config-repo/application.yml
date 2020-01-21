@@ -15,6 +15,7 @@ spring:
       type: rabbit
     sleuth:
       enabled: true
+      probability: 1.0
       http:
         legacy:
           enabled: true
