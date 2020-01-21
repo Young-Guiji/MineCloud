@@ -29,4 +29,8 @@ public interface IMallCarService {
     int updateProduct(String userId, String productId, Integer count);
 
     int selectOrUnSelect(String userId, String productId, int checked);
+
+    List<MallCar> selectCheckedCartByUserId(String userId);
+
+    int batchDeleteCart(List<String> idList);
 }

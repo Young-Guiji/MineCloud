@@ -8,4 +8,6 @@ public interface IMallOrderDetailService {
     List<MallOrderDetail> getListByOrderNo(String orderNo);
 
     List<MallOrderDetail> getListByOrderNoUserId(String orderNo, String userId);
+
+    void batchInsertOrderDetail(List<MallOrderDetail> orderDetailList);
 }

@@ -1,6 +1,8 @@
 package com.springboot.cloud.mallorder.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.springboot.cloud.common.core.entity.mallorder.vo.OrderVo;
+import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.entity.form.BaseQueryForm;
 import com.springboot.cloud.common.core.entity.mallorder.vo.OrderProductVo;
@@ -11,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +66,39 @@ public class MallOrderController extends BaseController {
         IPage pageInfo = orderService.queryUserOrderListWithPage(userId, baseQueryForm);
 
         return Result.success(pageInfo);
+    }
+
+    /**
+     * 创建订单.
+     *
+     * @param shippingId the shipping id
+     *
+     * @return the wrapper
+     */
+    @PostMapping("/createOrderDoc/{shippingId}")
+    @ApiOperation(httpMethod = "POST", value = "创建订单")
+    public Result createOrderDoc(@PathVariable String shippingId) {
+        logger.info("createOrderDoc - 创建订单. shippingId={}", shippingId);
+        UserInfoDto loginUserInfo = getLoginUserInfo();
+        logger.info("操作人信息. loginAuthDto={}", loginUserInfo);
+
+        OrderVo orderDoc = orderService.createOrderDoc(loginUserInfo, shippingId);
+        return Result.success(orderDoc);
+    }
+
+    /**
+     * 查询订单状态.
+     *
+     * @param orderNo the order no
+     *
+     * @return the wrapper
+     */
+    @PostMapping("/queryOrderPayStatus/{orderNo}")
+    @ApiOperation(httpMethod = "POST", value = "查询订单状态")
+    public Result<Boolean> queryOrderPayStatus(@PathVariable String orderNo) {
+        logger.info("queryOrderPayStatus - 查询订单状态. orderNo={}", orderNo);
+        boolean result = orderService.queryOrderPayStatus(getLoginUserInfo().getId(), orderNo);
+        return Result.success(result);
     }
 
 }

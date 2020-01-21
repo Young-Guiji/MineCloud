@@ -6,6 +6,7 @@
     <groupId>com.springboot.cloud</groupId>
     <artifactId>mall-order</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <packaging>jar</packaging>
 
     <name>mall-order</name>
@@ -17,5 +18,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.9.13.ALL</version>
+        </dependency>
+    </dependencies>
 
 </project>

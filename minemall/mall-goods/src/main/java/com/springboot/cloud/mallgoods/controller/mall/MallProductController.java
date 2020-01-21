@@ -2,16 +2,19 @@ package com.springboot.cloud.mallgoods.controller.mall;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.entity.mallgoods.dto.ProductDto;
 import com.springboot.cloud.common.core.entity.mallgoods.dto.ProductReqDto;
 import com.springboot.cloud.common.core.entity.mallgoods.vo.ProductDetailVo;
+import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.common.web.support.BaseController;
 import com.springboot.cloud.mallgoods.entity.po.MallProduct;
 import com.springboot.cloud.mallgoods.entity.po.MallProductCategory;
 import com.springboot.cloud.mallgoods.service.IMallProductCategoryService;
 import com.springboot.cloud.mallgoods.service.IMallProductService;
+import com.springboot.cloud.util.PubUtils;
 import com.springboot.cloud.util.PublicUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -94,4 +97,12 @@ public class MallProductController extends BaseController {
         return Result.success(page);
     }
 
+    @ApiOperation(httpMethod = "POST", value = "更新商品库存")
+    @PostMapping(value = "/updateProductStockById")
+    public Result<Integer> updateProductStockById(@RequestBody ProductDto productDto) {
+        logger.info("更新商品库存. productDto={}", productDto);
+        Preconditions.checkArgument(!PubUtils.isNull(productDto, productDto.getId()), SystemErrorType.GOOD10021021.getMesg());
+        int result = mallProductService.updateProductStockById(productDto);
+        return Result.success(result);
+    }
 }

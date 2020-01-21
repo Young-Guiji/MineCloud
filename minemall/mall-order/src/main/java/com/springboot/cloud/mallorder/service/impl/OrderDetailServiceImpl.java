@@ -1,6 +1,7 @@
 package com.springboot.cloud.mallorder.service.impl;
 
 import com.google.common.base.Preconditions;
+import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.mallorder.entity.po.MallOrderDetail;
 import com.springboot.cloud.mallorder.mapper.MallOrderDetailMapper;
@@ -28,5 +29,13 @@ public class OrderDetailServiceImpl implements IMallOrderDetailService {
         Preconditions.checkArgument(userId != null, SystemErrorType.USER10011001);
         Preconditions.checkArgument(StringUtils.isNotEmpty(orderNo), "订单号不能为空");
         return mallOrderDetailMapper.getListByOrderNoUserId(orderNo, userId);
+    }
+
+    @Override
+    public void batchInsertOrderDetail(List<MallOrderDetail> orderDetailList) {
+        int insertResult = mallOrderDetailMapper.batchInsertOrderDetail(orderDetailList);
+        if (insertResult < orderDetailList.size()) {
+            throw new ServiceException(SystemErrorType.ORDER10031009);
+        }
     }
 }

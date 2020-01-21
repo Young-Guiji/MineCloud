@@ -12,4 +12,6 @@ public interface MallOrderDetailMapper extends BaseMapper<MallOrderDetail> {
     List<MallOrderDetail> getListByOrderNo(String orderNo);
 
     List<MallOrderDetail> getListByOrderNoUserId(@Param("orderNo") String orderNo, @Param("userId") String userId);
+
+    int batchInsertOrderDetail(@Param("orderDetailList") List<MallOrderDetail> orderDetailList);
 }

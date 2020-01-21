@@ -45,28 +45,27 @@
 
     <insert id="batchInsertOrderDetail" parameterType="java.util.List">
         insert into pc_omc_order_detail
-        (id, version, detail_no, user_id, order_no, product_id, product_name,
-            product_image, current_unit_price, quantity, total_price, creator, creator_id, created_time,
-            last_operator, last_operator_id, updated_time)
+        (id, version, detail_no, user_id, order_no, product_id, product_name, product_image, current_unit_price,
+        quantity, total_price, created_by, created_id, created_time,updated_by, updated_id, updated_time)
         values
         <foreach collection="orderDetailList" index="index" item="item" separator=",">
-            (#{item.id,jdbcType=BIGINT},
+            (#{item.id,jdbcType=VARCHAR},
             #{item.version,jdbcType=INTEGER},
             #{item.detailNo,jdbcType=VARCHAR},
-            #{item.userId,jdbcType=BIGINT},
+            #{item.userId,jdbcType=VARCHAR},
             #{item.orderNo,jdbcType=VARCHAR},
-            #{item.productId,jdbcType=BIGINT},
+            #{item.productId,jdbcType=VARCHAR},
             #{item.productName,jdbcType=VARCHAR},
             #{item.productImage,jdbcType=VARCHAR},
             #{item.currentUnitPrice,jdbcType=DECIMAL},
             #{item.quantity,jdbcType=INTEGER},
             #{item.totalPrice,jdbcType=DECIMAL},
-            #{item.creator,jdbcType=VARCHAR},
-            #{item.creatorId,jdbcType=BIGINT},
+            #{item.createdBy,jdbcType=VARCHAR},
+            #{item.createdId,jdbcType=VARCHAR},
             #{item.createdTime,jdbcType=TIMESTAMP},
-            #{item.lastOperator,jdbcType=VARCHAR},
-            #{item.lastOperatorId,jdbcType=BIGINT},
-            #{item.updateTime,jdbcType=TIMESTAMP})
+            #{item.updatedBy,jdbcType=VARCHAR},
+            #{item.updatedId,jdbcType=VARCHAR},
+            #{item.updatedTime,jdbcType=TIMESTAMP})
         </foreach>
     </insert>
 </mapper>

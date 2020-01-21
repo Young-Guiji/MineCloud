@@ -113,7 +113,7 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail(BaseException baseException, Object data) {
-        return new Result<>(baseException.getErrorType(), data);
+        return new Result<>(baseException.getErrorType().getCode(),baseException.getMessage(), data);
     }
 
     /**

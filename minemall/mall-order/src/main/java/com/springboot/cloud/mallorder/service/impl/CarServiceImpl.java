@@ -280,6 +280,16 @@ public class CarServiceImpl implements IMallCarService {
     }
 
     @Override
+    public List<MallCar> selectCheckedCartByUserId(String userId) {
+        return mallCarMapper.selectCheckedCartByUserId(userId);
+    }
+
+    @Override
+    public int batchDeleteCart(List<String> idList) {
+        return mallCarMapper.batchDeleteCart(idList);
+    }
+
+    @Override
     public int deleteProduct(String userId, String productIds) {
         log.info("deleteProduct - 删除购物车记录 userId={}, productIds={}", userId, productIds);
         Preconditions.checkArgument(StringUtils.isNotEmpty(productIds), SystemErrorType.GOOD10021021);

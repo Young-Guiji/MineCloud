@@ -17,6 +17,7 @@ import com.springboot.cloud.mallgoods.entity.po.MallProductCategory;
 import com.springboot.cloud.mallgoods.mapper.MallProductMapper;
 import com.springboot.cloud.mallgoods.service.IMallProductCategoryService;
 import com.springboot.cloud.mallgoods.service.IMallProductService;
+import com.springboot.cloud.util.PubUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,12 @@ public class MallProductServiceImpl implements IMallProductService {
     @Override
     public MallProduct getProductById(String productId) {
         return productMapper.selectById(productId);
+    }
+
+    @Override
+    public int updateProductStockById(ProductDto productDto) {
+        Preconditions.checkArgument(!PubUtils.isNull(productDto, productDto.getId()), SystemErrorType.GOOD10021021.getMesg());
+        return productMapper.updateProductStockById(productDto);
     }
 
     private ProductDto assembleProductListVo(MallProduct product) {

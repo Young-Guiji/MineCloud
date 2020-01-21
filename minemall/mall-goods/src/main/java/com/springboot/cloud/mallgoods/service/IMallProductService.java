@@ -17,4 +17,6 @@ public interface IMallProductService {
     ProductDetailVo getProductDetail(String productId);
 
     MallProduct getProductById(String productId);
+
+    int updateProductStockById(ProductDto productDto);
 }

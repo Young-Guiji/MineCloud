@@ -42,7 +42,7 @@ public class DefaultGlobalExceptionHandlerAdvice {
     @ExceptionHandler(value = {BaseException.class})
     public Result baseException(BaseException ex) {
         log.error("base exception:{}", ex.getMessage());
-        return Result.fail(ex.getErrorType());
+        return Result.fail(ex);
     }
 
     @ExceptionHandler(value = {Exception.class})

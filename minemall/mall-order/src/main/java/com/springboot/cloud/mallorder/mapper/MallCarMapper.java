@@ -18,4 +18,6 @@ public interface MallCarMapper extends BaseMapper<MallCar> {
     int deleteByUserIdProductIds(@Param("userId") String userId, @Param("productIdList") List<String> productList);
 
     int checkedOrUncheckedProduct(@Param("userId") String userId, @Param("productId") String productId, @Param("checked") int checked);
+
+    int batchDeleteCart(@Param("idList") List<String> idList);
 }
