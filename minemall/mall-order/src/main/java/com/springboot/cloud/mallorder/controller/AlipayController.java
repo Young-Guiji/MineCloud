@@ -1,7 +1,5 @@
 package com.springboot.cloud.mallorder.controller;
 
-import com.google.common.collect.Maps;
-import com.netflix.discovery.converters.Auto;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.web.support.BaseController;
@@ -14,9 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/pay")

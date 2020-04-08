@@ -1,31 +1,34 @@
 package com.springboot.cloud.mallorder.service.impl;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.domain.GoodsDetail;
-import com.alipay.api.request.AlipayAcquirePrecreateRequest;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.mallorder.dto.OrderDto;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
+import com.springboot.cloud.mallorder.config.AlipayConfig;
 import com.springboot.cloud.mallorder.entity.po.MallOrderDetail;
 import com.springboot.cloud.mallorder.service.IAlipayService;
 import com.springboot.cloud.mallorder.service.IMallOrderDetailService;
 import com.springboot.cloud.mallorder.service.IMallOrderService;
 import com.springboot.cloud.util.BigDecimalUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class AlipayServiceImpl implements IAlipayService {
 
-    @Value("${minecloud.alipay.callback.url}")
-    private String alipayCallbackUrl;
-
+    private static AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
     @Autowired
     private IMallOrderService orderService;
     @Autowired
@@ -70,7 +73,7 @@ public class AlipayServiceImpl implements IAlipayService {
 
         // 业务扩展参数, 目前可添加由支付宝分配的系统商编号(通过setSysServiceProviderId方法), 详情请咨询支付宝技术支持
         ExtendParams extendParams = new ExtendParams();
-        extendParams.setSysServiceProviderId("2088100200300400500");
+        extendParams.setSysServiceProviderId("2016101900720429");
 
         // 支付超时, 定义为120分钟
         String timeoutExpress = "120m";
@@ -87,21 +90,23 @@ public class AlipayServiceImpl implements IAlipayService {
             goodsDetail.setQuantity(orderDetail.getQuantity().longValue());
             goodsDetailList.add(goodsDetail);
         }
-        // 创建扫码支付请求builder, 设置请求参数
-//        AlipayAcquirePrecreateRequest request = new AlipayAcquirePrecreateRequest();
-//        request.setSubject(subject);
-//        request.setTotalAmount(totalAmount);
-//        request.setOutTradeNo(outTradeNo);
-//        request.setUndiscountableAmount(undiscountableAmount);
-//        request.setSellerId(sellerId);
-//        request.setBody(body);
-//        request.setOperatorId(operatorId);
-//        request.setStoreId(storeId);
-//        request.setExtendParams(extendParams);
-//        request.setTimeoutExpress(timeoutExpress);
-//        //支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
-//        request.setNotifyUrl(alipayCallbackUrl);
-//        request.setGoodsDetailList(goodsDetailList);
-        return null;
+        //设置请求参数
+        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
+        alipayRequest.setReturnUrl(AlipayConfig.return_url);
+        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+
+        alipayRequest.setBizContent("{\"outTradeNo\":\""+ outTradeNo +"\","
+                + "\"totalAmount\":\""+ totalAmount +"\","
+                + "\"subject\":\""+ subject +"\","
+                + "\"body\":\""+ body +"\","
+                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+        String result = "";
+        //请求
+        try {
+            result = alipayClient.pageExecute(alipayRequest).getBody();
+        } catch (AlipayApiException e) {
+            log.error("支付失败，订单号={}，异常信息：{}",outTradeNo,e.getMessage(),e);
+        }
+        return Result.success(result);
     }
 }
