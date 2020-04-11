@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : paascloud-dev
-Source Server Version : 50719
-Source Host           : 192.168.241.21:3306
-Source Database       : paascloud_omc
+Source Server         : 10.203.72.183
+Source Server Version : 50646
+Source Host           : 10.203.72.183:3306
+Source Database       : mall_order
 
 Target Server Type    : MYSQL
-Target Server Version : 50719
+Target Server Version : 50646
 File Encoding         : 65001
 
-Date: 2018-03-19 16:19:46
+Date: 2020-04-11 09:11:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,17 +20,17 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `pc_omc_cart`;
 CREATE TABLE `pc_omc_cart` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `id` varchar(20) NOT NULL COMMENT 'ID',
   `version` int(11) DEFAULT '0' COMMENT '版本号',
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `product_id` bigint(20) NOT NULL COMMENT '商品ID',
+  `user_id` varchar(20) NOT NULL COMMENT '用户ID',
+  `product_id` varchar(20) NOT NULL COMMENT '商品ID',
   `quantity` int(11) DEFAULT NULL COMMENT '数量',
   `checked` int(11) DEFAULT NULL COMMENT '是否选择,1=已勾选,0=未勾选',
   `created_by` varchar(20) CHARACTER SET utf8 DEFAULT NULL COMMENT '创建人',
-  `created_id` bigint(20) DEFAULT NULL COMMENT '创建人ID',
+  `created_id` varchar(20) DEFAULT NULL COMMENT '创建人ID',
   `created_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_by` varchar(20) CHARACTER SET utf8 DEFAULT NULL COMMENT '最近操作人',
-  `updated_id` bigint(20) DEFAULT NULL COMMENT '最后操作人ID',
+  `updated_id` varchar(20) DEFAULT NULL COMMENT '最后操作人ID',
   `updated_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='购物车表';
@@ -136,31 +136,6 @@ CREATE TABLE `pc_omc_shipping` (
 -- ----------------------------
 -- Records of pc_omc_shipping
 -- ----------------------------
-INSERT INTO `pc_omc_shipping` VALUES ('4', '0', '1', 'jack', '13800138000', '18688888888', null, '北京', null, '北京市', '海淀区', '', '', '西二街', '中关村', '100000', '0', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
-INSERT INTO `pc_omc_shipping` VALUES ('7', '0', '1', 'Rosen', '13800138000', '13800138000', null, '北京', null, '北京', null, '', '', '东二街', '中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
-INSERT INTO `pc_omc_shipping` VALUES ('29', '0', '1', '吉利', '13800138000', '13800138000', null, '北京', null, '北京', '海淀区', '', '', '背二街', '海淀区中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
-
--- ----------------------------
--- Table structure for pc_ptc_pay_info
--- ----------------------------
-DROP TABLE IF EXISTS `pc_ptc_pay_info`;
-CREATE TABLE `pc_ptc_pay_info` (
-  `id` bigint(20) NOT NULL COMMENT 'ID',
-  `version` int(11) NOT NULL DEFAULT '0' COMMENT '版本号',
-  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
-  `order_no` varchar(50) DEFAULT '' COMMENT '订单号',
-  `pay_platform` int(10) DEFAULT NULL COMMENT '支付平台:1-支付宝,2-微信',
-  `platform_number` varchar(200) DEFAULT '' COMMENT '支付宝支付流水号',
-  `platform_status` varchar(20) DEFAULT '' COMMENT '支付宝支付状态',
-  `created_by` varchar(20) DEFAULT '' COMMENT '创建人',
-  `created_id` bigint(32) DEFAULT NULL COMMENT '创建人ID',
-  `created_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_by` varchar(20) DEFAULT '' COMMENT '最近操作人',
-  `updated_id` bigint(32) DEFAULT NULL COMMENT '最后操作人ID',
-  `updated_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支付表';
-
--- ----------------------------
--- Records of pc_ptc_pay_info
--- ----------------------------
+INSERT INTO `pc_omc_shipping` VALUES ('29', '0', '101', '吉利', '13800138000', '13800138000', null, '北京', null, '北京', '海淀区', '', '', '背二街', '海淀区中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
+INSERT INTO `pc_omc_shipping` VALUES ('4', '0', '101', 'jack', '13800138000', '18688888888', null, '北京', null, '北京市', '海淀区', '', '', '西二街', '中关村', '100000', '0', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
+INSERT INTO `pc_omc_shipping` VALUES ('7', '0', '101', 'Rosen', '13800138000', '13800138000', null, '北京', null, '北京', null, '', '', '东二街', '中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
