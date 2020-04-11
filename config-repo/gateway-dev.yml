@@ -1,0 +1,30 @@
+spring:
+  redis:
+    host: ${REDIS_HOST:192.168.1.103}
+    port: ${REDIS_PORT:6379}
+    #password: ${REDIS_PASSWORD:}
+  #jwt密码
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
+  cloud:
+    gateway:
+      default-filters:
+      - name: Retry
+        args:
+          retries: 3
+          statuses: BAD_GATEWAY
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+      - name: RequestRateLimiter
+        args:
+          redis-rate-limiter.replenishRate: 2  #流速 每秒
+          redis-rate-limiter.burstCapacity: 10   #令牌桶的容积
+          rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
+          key-resolver: "#{@apiKeyResolver}" #SPEL表达式去的对应的bean
+
+#网关白名单，无需要签权url
+gate:
+  ignore:
+    authentication:
+      startWith: /oauth,/open,/auth

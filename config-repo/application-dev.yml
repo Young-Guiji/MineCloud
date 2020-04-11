@@ -1,0 +1,33 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+spring:
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:192.168.1.103}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:mine}
+    password: ${RABBIT_MQ_PASSWORD:mine}
+    virtual-host: ${RABBIT_MQ_VIRTUAL:/mine}
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+    sleuth:
+      enabled: true
+      probability: 1.0
+      http:
+        legacy:
+          enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    com.springboot.cloud.gateway: debug
+    com.jalja.org.spring: debug
+  path: /data/logs/MineCloud/
+  file:
+    max-size: 1GB

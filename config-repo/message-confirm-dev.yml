@@ -1,0 +1,73 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:192.168.1.103}:${DATASOURCE_PORT:3306}/message_confirm?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:root}
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: quartzScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 20000
+            misfireThreshold: 5000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 50
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc
+  #  cloud:
+#    stream:
+#      bindings:
+#        hystrixStreamOutput:
+#          destination: "turbineStreamInput"
+#  zipkin:
+#    sender:
+#      type: rabbit
+#    enabled: true
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#    feign:
+#      enabled: true
+#      processor:
+#        enabled: true
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "3MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+
+mybatis-plus:
+  mapper-locations: classpath*:com/springboot/cloud/**/mapper/*Mapper.xml
+  type-aliases-package: com.springboot.cloud.**.po
+  configuration:
+    map-underscore-to-camel-case: true
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#feign:
+#  hystrix:
+#    enabled: true
+#hystrix:
+#  stream:
+#    queue:
+#      destination: "turbineStreamInput"

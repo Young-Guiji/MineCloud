@@ -9,10 +9,13 @@ eureka:
       defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 
 spring:
+  profiles:
+    active: dev
   application:
     name: eureka-server
   rabbitmq:
-    host: ${RABBIT_MQ_HOST:10.203.72.183}
+#    host: ${RABBIT_MQ_HOST:10.203.72.183}
+    host: ${RABBIT_MQ_HOST:192.168.1.103}
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:mine}
     password: ${RABBIT_MQ_PASSWORD:mine}
