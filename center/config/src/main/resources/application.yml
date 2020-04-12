@@ -24,12 +24,12 @@ spring:
         git:
           uri: https://github.com/Young-Guiji/MineCloud.git
           searchPaths: config-repo
-          proxy:
-            https:
-              host: 10.191.113.100
-              password: jayJAY11.
-              port: 8002
-              username: xieboyun-001
+#          proxy:
+#            https:
+#              host: 10.191.113.100
+#              password: jayJAY11.
+#              port: 8002
+#              username: xieboyun-001
 
 management:
   endpoints:

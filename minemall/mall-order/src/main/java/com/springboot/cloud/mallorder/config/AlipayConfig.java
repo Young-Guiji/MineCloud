@@ -1,4 +1,4 @@
-﻿package com.springboot.cloud.mallorder.config;
+package com.springboot.cloud.mallorder.config;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,10 +21,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj9x42RPpr7j8uXsx4rH7ZNCVzC+R316v8/kckfPvA3WrjmMhqMojW9CpbClNCmaPNWr5OcLTJdaizhnVkdwxUQ3r+kWjtHYdN7IHHJE3p46n6JQjbGWkyPTigscA+u7IG8Zwra33nI6ocU3GsnH6IksENDAh/cKQfCKBKA/T0jpfVHMWP3Z2YQXzTYPpzXItXOQXoX2IbZm6F2mlupmuqHlLtCBz7UAnXz8cGwBXGw9v4F2FYyDhvH5oVFERqQG/DSWFLtN01AQ3MWcSJclVmdyycSKFQkx0l3SQxb5FyPClDzfprZgYZWr9Gw3kp828Jaw6gOXW6ruxO9UasxMT3wIDAQAB";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://127.0.0.1/mall-order/notify_url.jsp";
+	public static String notify_url = "http://127.0.0.1/mall-order/pay/alipayCallback";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "http://127.0.0.1/mall-order/return_url.jsp";
+	public static String return_url = "http://127.0.0.1/mall-order/pay/alipayCallback";
 
 	// 签名方式
 	public static String sign_type = "RSA2";

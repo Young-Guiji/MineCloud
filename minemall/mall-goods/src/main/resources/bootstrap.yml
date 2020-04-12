@@ -2,6 +2,8 @@ server:
   port: ${SERVER_PORT:31002}
 
 spring:
+  profiles:
+    active: dev
   application:
     name: mall-goods
   cloud:

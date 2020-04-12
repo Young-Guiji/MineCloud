@@ -2,6 +2,8 @@ server:
   port: ${SERVER_PORT:8001}
 
 spring:
+  profiles:
+    active: dev
   application:
     name: authentication-server
   cloud:

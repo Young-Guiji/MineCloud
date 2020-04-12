@@ -2,6 +2,8 @@ server:
   port: ${SERVER_PORT:8443}
 
 spring:
+  profiles:
+    active: dev
   application:
     name: gateway
   cloud:
