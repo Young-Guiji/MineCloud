@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:192.168.1.103}:${DATASOURCE_PORT:3306}/mall_order?characterEncoding=UTF-8&useUnicode=true&useSSL=false
