@@ -2,22 +2,20 @@ package com.springboot.cloud.gateway.admin.entity.ov;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.cloud.common.core.entity.vo.BaseVo;
 import com.springboot.cloud.gateway.admin.entity.po.FilterDefinition;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.entity.po.PredicateDefinition;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
-public class GatewayRouteVo extends BaseVo {
+public class GatewayRouteVo implements Serializable {
     private String id;
     private String uri;
     private Integer order;
