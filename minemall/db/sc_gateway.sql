@@ -32,6 +32,13 @@ CREATE TABLE `gateway_route` (
   `updated_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `created_by` varchar(100) NOT NULL COMMENT '创建人',
   `updated_by` varchar(100) NOT NULL COMMENT '更新人',
+  `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_id` varchar(20) CHARACTER SET utf8 DEFAULT NULL COMMENT '创建人id',
+  `created_by` varchar(100) NOT NULL COMMENT '创建人',
+  `updated_id` varchar(20) CHARACTER SET utf8 DEFAULT NULL COMMENT '更新人ID',
+  `updated_by` varchar(100) NOT NULL COMMENT '更新人',
+  `version` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ux_gateway_routes_uri` (`uri`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网关路由表';
