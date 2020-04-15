@@ -47,7 +47,7 @@ public class AlipayServiceImpl implements IAlipayService {
     private IMallOrderDetailService orderDetailService;
     @Value("${mall.alipay.qrCode.pcPath}")
     private String qrCodePcPath;
-    @Value("${paascloud.alipay.qrCode.qiniuPath}")
+    @Value("${mall.alipay.qrCode.qiniuPath}")
     private String qrCodeQiniuPath;
 
     @Override
