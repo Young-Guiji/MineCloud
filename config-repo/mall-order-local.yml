@@ -35,7 +35,13 @@ mybatis-plus:
   type-aliases-package: com.springboot.cloud.**.po
   configuration:
     map-underscore-to-camel-case: true
-
+mall:
+  alipay:
+    callback:
+      url: http://dev-api.paascloud.net/omc/pay/alipayCallback
+    qrCode:
+      pcPath: /data/file/qrCode/alipay
+      qiniuPath: alipay/QRCode/
 #management:
 #  endpoints:
 #    web:

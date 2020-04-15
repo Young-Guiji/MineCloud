@@ -69,6 +69,53 @@ public class MallOrderController extends BaseController {
     }
 
     /**
+     * 取消订单.
+     *
+     * @param orderNo the order no
+     *
+     * @return the wrapper
+     */
+    @PostMapping("/cancelOrderDoc/{orderNo}")
+    @ApiOperation(httpMethod = "POST", value = "取消订单")
+    public Result cancelOrderDoc(@PathVariable String orderNo) {
+        logger.info("cancelOrderDoc - 取消订单. orderNo={}", orderNo);
+        String userId = getLoginUserInfo().getId();
+        logger.info("操作人信息. userId={}", userId);
+
+        int result = orderService.cancelOrderDoc(userId, orderNo);
+
+        return Result.success(result);
+    }
+
+    /**
+     * 查询订单详情.
+     *
+     * @param orderNo the order no
+     *
+     * @return the wrapper
+     */
+    @PostMapping("/queryUserOrderDetailList/{orderNo}")
+    @ApiOperation(httpMethod = "POST", value = "查询订单详情")
+    public Result queryUserOrderDetailList(@PathVariable String orderNo) {
+        logger.info("queryUserOrderDetailList - 查询用户订单明细. orderNo={}", orderNo);
+
+        String userId = getLoginUserInfo().getId();
+        logger.info("操作人信息. userId={}", userId);
+
+        OrderVo orderVo = orderService.getOrderDetail(userId, orderNo);
+        return Result.success(orderVo);
+    }
+
+    @PostMapping("/queryUserOrderDetail/{orderNo}")
+    @ApiOperation(httpMethod = "POST", value = "查询订单详情")
+    public Result queryUserOrderDetail(@PathVariable String orderNo) {
+        logger.info("queryUserOrderDetail - 查询订单明细. orderNo={}", orderNo);
+
+        OrderVo orderVo = orderService.getOrderDetail(orderNo);
+        return Result.success(orderVo);
+    }
+
+    /**
      * 创建订单.
      *
      * @param shippingId the shipping id

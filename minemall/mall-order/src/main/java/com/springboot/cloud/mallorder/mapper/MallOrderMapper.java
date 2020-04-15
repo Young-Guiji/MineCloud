@@ -10,5 +10,7 @@ import org.apache.ibatis.annotations.Param;
 public interface MallOrderMapper extends BaseMapper<MallOrder> {
     Page<MallOrder> selectByUserId(Page page, @Param("userId") String userId);
 
-    MallOrder selectByUserIdAndOrderNo(String userId, String orderNo);
+    MallOrder selectByUserIdAndOrderNo(@Param("userId") String userId, @Param("orderNo") String orderNo);
+
+    MallOrder selectByOrderNo(String orderNo);
 }

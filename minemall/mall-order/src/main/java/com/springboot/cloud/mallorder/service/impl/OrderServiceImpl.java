@@ -135,6 +135,45 @@ public class OrderServiceImpl implements IMallOrderService {
         return mallOrderMapper.selectByUserIdAndOrderNo(userId, orderNo);
     }
 
+    @Override
+    public int cancelOrderDoc(String userId, String orderNo) {
+        MallOrder order = mallOrderMapper.selectByUserIdAndOrderNo(userId, orderNo);
+        if (order == null) {
+            log.error("该用户此订单不存在, userId={}, orderNo={}", userId, orderNo);
+            throw new ServiceException(SystemErrorType.ORDER10031003);
+        }
+        if (order.getStatus() != OrderApiConstant.OrderStatusEnum.NO_PAY.getCode()) {
+            throw new ServiceException(SystemErrorType.ORDER10031004);
+        }
+        MallOrder updateOrder = new MallOrder();
+        updateOrder.setId(order.getId());
+        updateOrder.setStatus(OrderApiConstant.OrderStatusEnum.CANCELED.getCode());
+
+        return mallOrderMapper.updateById(updateOrder);
+    }
+
+    @Override
+    public OrderVo getOrderDetail(String userId, String orderNo) {
+        log.info("获取订单明细, userId={}, orderNo={}", userId, orderNo);
+        MallOrder order = mallOrderMapper.selectByUserIdAndOrderNo(userId, orderNo);
+        if (null == order) {
+            throw new ServiceException(SystemErrorType.ORDER10031005, orderNo);
+        }
+        List<MallOrderDetail> orderItemList = orderDetailService.getListByOrderNoUserId(orderNo, userId);
+        return assembleOrderVo(order, orderItemList);
+    }
+
+    @Override
+    public OrderVo getOrderDetail(String orderNo) {
+        log.info("获取订单明细, orderNo={}", orderNo);
+        MallOrder order = mallOrderMapper.selectByOrderNo(orderNo);
+        if (null == order) {
+            throw new ServiceException(SystemErrorType.ORDER10031005, orderNo);
+        }
+        List<MallOrderDetail> orderItemList = orderDetailService.getListByOrderNo(orderNo);
+        return assembleOrderVo(order, orderItemList);
+    }
+
     private void cleanCart(List<MallCar> cartList) {
         List<String> idList = Lists.newArrayList();
         for (MallCar cart : cartList) {

@@ -18,4 +18,10 @@ public interface IMallOrderService {
     OrderDto queryOrderDtoByUserIdAndOrderNo(String userId, String orderNo);
 
     MallOrder queryByUserIdAndOrderNo(String userId, String orderNo);
+
+    int cancelOrderDoc(String userId, String orderNo);
+
+    OrderVo getOrderDetail(String userId, String orderNo);
+
+    OrderVo getOrderDetail(String orderNo);
 }

@@ -1,14 +1,21 @@
 package com.springboot.cloud.mallorder.service.impl;
 
+import cn.hutool.core.io.FileUtil;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.domain.GoodsDetail;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.request.AlipayTradePrecreateRequest;
+import com.alipay.api.response.AlipayTradePagePayResponse;
+import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.mallorder.dto.OrderDto;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
+import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileByteInfoReqDto;
+import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileReqDto;
+import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileRespDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
@@ -18,10 +25,15 @@ import com.springboot.cloud.mallorder.service.IAlipayService;
 import com.springboot.cloud.mallorder.service.IMallOrderDetailService;
 import com.springboot.cloud.mallorder.service.IMallOrderService;
 import com.springboot.cloud.util.BigDecimalUtil;
+import com.springboot.cloud.util.ZxingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.List;
 
 @Slf4j
@@ -33,6 +45,10 @@ public class AlipayServiceImpl implements IAlipayService {
     private IMallOrderService orderService;
     @Autowired
     private IMallOrderDetailService orderDetailService;
+    @Value("${mall.alipay.qrCode.pcPath}")
+    private String qrCodePcPath;
+    @Value("${paascloud.alipay.qrCode.qiniuPath}")
+    private String qrCodeQiniuPath;
 
     @Override
     public Result pay(String orderNo, UserInfoDto loginUserInfo) {
@@ -91,7 +107,7 @@ public class AlipayServiceImpl implements IAlipayService {
             goodsDetailList.add(goodsDetail);
         }
         //设置请求参数
-        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
+        AlipayTradePrecreateRequest alipayRequest = new AlipayTradePrecreateRequest();
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
@@ -100,13 +116,57 @@ public class AlipayServiceImpl implements IAlipayService {
                 + "\"subject\":\""+ subject +"\","
                 + "\"body\":\""+ body +"\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-        String result = "";
+
         //请求
         try {
-            result = alipayClient.pageExecute(alipayRequest).getBody();
+            AlipayTradePrecreateResponse response = alipayClient.execute(alipayRequest);
+            if(response.isSuccess()){
+                log.info("支付宝预下单成功: )");
+                // 需要修改为运行机器上的路径
+                File folder = new File(qrCodePcPath);
+                if (!folder.exists()) {
+                    folder.setWritable(true);
+                    folder.mkdirs();
+                }
+                //细节细节细节
+                String qrPath = String.format(qrCodePcPath + "/qr-%s.png", response.getOutTradeNo());
+                String qrFileName = String.format("qr-%s.png", response.getOutTradeNo());
+                ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
+                File qrCodeImage = new File(qrPath);
+                UploadFileReqDto uploadFileReqDto = new UploadFileReqDto();
+                uploadFileReqDto.setBucketName("paascloud-oss-bucket");
+                uploadFileReqDto.setFilePath(qrCodeQiniuPath);
+                uploadFileReqDto.setFileType("png");
+                uploadFileReqDto.setUserId(loginUserInfo.getId());
+                uploadFileReqDto.setUserName(loginUserInfo.getUsername());
+
+                UploadFileByteInfoReqDto uploadFileByteInfoReqDto = new UploadFileByteInfoReqDto();
+
+                uploadFileByteInfoReqDto.setFileName(qrFileName);
+                byte[] bytes = FileUtil.readBytes(qrCodeImage);
+                uploadFileByteInfoReqDto.setFileByteArray(bytes);
+
+                uploadFileReqDto.setUploadFileByteInfoReqDto(uploadFileByteInfoReqDto);
+                UploadFileRespDto optUploadFileRespDto = null;
+                try {
+//                    optUploadFileRespDto = opcOssService.uploadFile(uploadFileReqDto);
+                    optUploadFileRespDto.setRefNo(orderNo);
+                    // 获取二维码
+//                    final OptGetUrlRequest request = new OptGetUrlRequest();
+//                    request.setAttachmentId(optUploadFileRespDto.getAttachmentId());
+//                    request.setEncrypt(true);
+//                    String fileUrl = opcOssService.getFileUrl(request);
+                    optUploadFileRespDto.setAttachmentUrl(bytes);
+                    return Result.success(optUploadFileRespDto);
+                } catch (Exception e) {
+                    log.error("上传二维码异常", e);
+                }
+            } else {
+                log.error("支付失败，订单号={}，异常信息：{}",outTradeNo,response.getMsg());
+            }
         } catch (AlipayApiException e) {
             log.error("支付失败，订单号={}，异常信息：{}",outTradeNo,e.getMessage(),e);
         }
-        return Result.success(result);
+        return Result.fail("支付失败，订单号={"+outTradeNo+"}");
     }
 }
