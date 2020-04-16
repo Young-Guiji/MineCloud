@@ -5,10 +5,8 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.ExtendParams;
-import com.alipay.api.domain.GoodsDetail;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
-import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.mallorder.dto.OrderDto;
@@ -94,28 +92,17 @@ public class AlipayServiceImpl implements IAlipayService {
         // 支付超时, 定义为120分钟
         String timeoutExpress = "120m";
 
-        // 商品明细列表, 需填写购买商品详细信息,
-        List<GoodsDetail> goodsDetailList = Lists.newArrayList();
-
-        List<MallOrderDetail> orderDetailList = orderDetailService.getListByOrderNoUserId(orderNo, userId);
-        for (MallOrderDetail orderDetail : orderDetailList) {
-            GoodsDetail goodsDetail = new GoodsDetail();
-            goodsDetail.setGoodsId(orderDetail.getProductId());
-            goodsDetail.setGoodsName(orderDetail.getProductName());
-            goodsDetail.setPrice(BigDecimalUtil.mul(orderDetail.getCurrentUnitPrice().doubleValue(), 100D).toString());
-            goodsDetail.setQuantity(orderDetail.getQuantity().longValue());
-            goodsDetailList.add(goodsDetail);
-        }
         //设置请求参数
         AlipayTradePrecreateRequest alipayRequest = new AlipayTradePrecreateRequest();
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-        alipayRequest.setBizContent("{\"outTradeNo\":\""+ outTradeNo +"\","
-                + "\"totalAmount\":\""+ totalAmount +"\","
+        alipayRequest.setBizContent("{\"out_trade_no\":\""+ outTradeNo +"\","
+                + "\"total_amount\":\""+ totalAmount +"\","
                 + "\"subject\":\""+ subject +"\","
                 + "\"body\":\""+ body +"\","
-                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+                + "\"store_id\":\""+ storeId +"\","
+                + "\"timeout_express\":\""+ timeoutExpress+ "\"}");
 
         //请求
         try {
@@ -134,7 +121,7 @@ public class AlipayServiceImpl implements IAlipayService {
                 ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
                 File qrCodeImage = new File(qrPath);
                 UploadFileReqDto uploadFileReqDto = new UploadFileReqDto();
-                uploadFileReqDto.setBucketName("paascloud-oss-bucket");
+                uploadFileReqDto.setBucketName("mall-oss-bucket");
                 uploadFileReqDto.setFilePath(qrCodeQiniuPath);
                 uploadFileReqDto.setFileType("png");
                 uploadFileReqDto.setUserId(loginUserInfo.getId());
@@ -147,7 +134,7 @@ public class AlipayServiceImpl implements IAlipayService {
                 uploadFileByteInfoReqDto.setFileByteArray(bytes);
 
                 uploadFileReqDto.setUploadFileByteInfoReqDto(uploadFileByteInfoReqDto);
-                UploadFileRespDto optUploadFileRespDto = null;
+                UploadFileRespDto optUploadFileRespDto = new UploadFileRespDto();
                 try {
 //                    optUploadFileRespDto = opcOssService.uploadFile(uploadFileReqDto);
                     optUploadFileRespDto.setRefNo(orderNo);
