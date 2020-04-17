@@ -149,11 +149,11 @@ public class AlipayServiceImpl implements IAlipayService {
                     log.error("上传二维码异常", e);
                 }
             } else {
-                log.error("支付失败，订单号={}，异常信息：{}",outTradeNo,response.getMsg());
+                log.error("支付宝预下单失败，订单号={}，异常信息：{}",outTradeNo,response.getMsg());
             }
         } catch (AlipayApiException e) {
-            log.error("支付失败，订单号={}，异常信息：{}",outTradeNo,e.getMessage(),e);
+            log.error("二维码生成失败，订单号={}，异常信息：{}",outTradeNo,e.getMessage(),e);
         }
-        return Result.fail("支付失败，订单号={"+outTradeNo+"}");
+        return Result.fail("二维码生成失败，订单号={"+outTradeNo+"}");
     }
 }
