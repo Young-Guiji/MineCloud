@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.springboot.cloud.common.core.annotation.MqConsumerStore;
 import com.springboot.cloud.common.core.constant.MqTopicConstants;
 import com.springboot.cloud.common.core.entity.message.dto.MqMessageDto;
-import com.springboot.cloud.resourcemanage.service.AttachmentService;
+import com.springboot.cloud.resourcemanage.service.IAttachmentService;
 import com.springboot.cloud.util.PublicUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -23,7 +23,7 @@ public class MessageReceive {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
     @Autowired
-    private AttachmentService attachmentService;
+    private IAttachmentService attachmentService;
 
 
     @RabbitListener(queues = MqTopicConstants.SEND_SMS_QUEUE)

@@ -39,5 +39,5 @@ public class ElementImgUrlDto implements Serializable {
 	/**
 	 * 图片关联的附件ID
 	 */
-	private Long attachmentId;
+	private String attachmentId;
 }

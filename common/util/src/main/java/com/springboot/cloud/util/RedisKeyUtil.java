@@ -27,12 +27,12 @@ public class RedisKeyUtil {
 	/**
 	 * The constant RESET_PWD_TOKEN_KEY.
 	 */
-	private static final String RESET_PWD_TOKEN_KEY = "paascloud:restPwd";
-	private static final String ACTIVE_USER = "paascloud:activeUser";
-	private static final String SEND_SMS_COUNT = "paascloud:sms:count";
-	private static final String SEND_EMAIL_CODE = "paascloud:email:code";
-	private static final String ACCESS_TOKEN = "paascloud:token:accessToken";
-	private static final String UPLOAD_FILE_SIZE = "paascloud:file:upload_file_size";
+	private static final String RESET_PWD_TOKEN_KEY = "mall:restPwd";
+	private static final String ACTIVE_USER = "mall:activeUser";
+	private static final String SEND_SMS_COUNT = "mall:sms:count";
+	private static final String SEND_EMAIL_CODE = "mall:email:code";
+	private static final String ACCESS_TOKEN = "mall:token:accessToken";
+	private static final String UPLOAD_FILE_SIZE = "mall:file:upload_file_size";
 	private static final int REF_NO_MAX_LENGTH = 100;
 
 	/**

@@ -160,14 +160,13 @@ public class GlobalConstant {
 	 *
 	 * @author guiji
 	 */
-	public static final class Oss {
-		private Oss() {
-		}
-
+	public static final class Qiniu {
 		/**
 		 * The constant DEFAULT_FILE_PATH.
 		 */
 		public static final String DEFAULT_FILE_PATH = "/default/";
+
+		public static final String PREFIX = "qiniu";
 	}
 
 

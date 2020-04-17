@@ -23,7 +23,7 @@ import java.io.Serializable;
 @Data
 public class AttachmentDto implements Serializable {
 	private static final long serialVersionUID = 7156713126848745258L;
-	private Long id;
+	private String id;
 	private String serialNo;
 	private String refNo;
 	private String name;

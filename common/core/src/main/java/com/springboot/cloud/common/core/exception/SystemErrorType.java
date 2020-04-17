@@ -20,6 +20,8 @@ public enum SystemErrorType implements ErrorType {
 
     GL99990002("99990002", "微服务不在线,或者网络超时"),
 
+    CONFIGERROR001("040001","存储区域配置错误"),
+
     USER10011001("10011001", "用户Id不能为空"),
 
     GOOD10021003("10021003", "获取商品信息失败"),
@@ -81,6 +83,14 @@ public enum SystemErrorType implements ErrorType {
     MESSAGE100500032("10050032", "修改任务失败"),
 
     MESSAGE100500033("10050033", "查询批处理任务失败"),
+
+    RESOURCE10040009("10040009", "上传图片失败"),
+
+    RESOURCE10040010("10040010", "文件名不能为空"),
+
+    RESOURCE10040011("10040011", "今日流量已用尽, 请明天再试"),
+
+    RESOURCE10040008("10040008", "找不到该附件信息, id=%s"),
 
     INVALID_HEADER("10011040", "解析header失败");
 

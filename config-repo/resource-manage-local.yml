@@ -39,6 +39,15 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
+qiniu:
+  accessKey: x1nMFdoi1-NjwkaQHtYZVWd5gNd0f8lMNiKje1RL
+  secretKey: tcHgKiDYoP8RvbPwIks_VUwqOsGPrsngDSEqQ3HC
+  # 对象储存
+  bucket: minemine # 空间名称
+  region: huadong # 存储区域
+  privateDomain: q8vyhi8gp.bkt.clouddn.com # 访问域名
+  publicDomain: q8vyhi8gp.bkt.clouddn.com # 访问域名
+  fileMaxSize: 10000
 #management:
 #  endpoints:
 #    web:
