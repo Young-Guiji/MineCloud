@@ -11,6 +11,7 @@ import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.mallorder.dto.OrderDto;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
+import com.springboot.cloud.common.core.entity.resourcemanage.dto.GetUrlRequest;
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileByteInfoReqDto;
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileReqDto;
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileRespDto;
@@ -19,6 +20,7 @@ import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.mallorder.config.AlipayConfig;
 import com.springboot.cloud.mallorder.entity.po.MallOrderDetail;
+import com.springboot.cloud.mallorder.provider.ResourceManageFeignService;
 import com.springboot.cloud.mallorder.service.IAlipayService;
 import com.springboot.cloud.mallorder.service.IMallOrderDetailService;
 import com.springboot.cloud.mallorder.service.IMallOrderService;
@@ -43,6 +45,8 @@ public class AlipayServiceImpl implements IAlipayService {
     private IMallOrderService orderService;
     @Autowired
     private IMallOrderDetailService orderDetailService;
+    @Autowired
+    private ResourceManageFeignService resourceManageFeignService;
     @Value("${mall.alipay.qrCode.pcPath}")
     private String qrCodePcPath;
     @Value("${mall.alipay.qrCode.qiniuPath}")
@@ -134,17 +138,18 @@ public class AlipayServiceImpl implements IAlipayService {
                 uploadFileByteInfoReqDto.setFileByteArray(bytes);
 
                 uploadFileReqDto.setUploadFileByteInfoReqDto(uploadFileByteInfoReqDto);
-                UploadFileRespDto optUploadFileRespDto = new UploadFileRespDto();
+                UploadFileRespDto uploadFileRespDto = null;
                 try {
-//                    optUploadFileRespDto = opcOssService.uploadFile(uploadFileReqDto);
-                    optUploadFileRespDto.setRefNo(orderNo);
+                    Result result = resourceManageFeignService.uploadFile(uploadFileReqDto);
+                    uploadFileRespDto = (UploadFileRespDto) result.getData();
+                    uploadFileRespDto.setRefNo(orderNo);
                     // 获取二维码
-//                    final OptGetUrlRequest request = new OptGetUrlRequest();
-//                    request.setAttachmentId(optUploadFileRespDto.getAttachmentId());
-//                    request.setEncrypt(true);
-//                    String fileUrl = opcOssService.getFileUrl(request);
-                    optUploadFileRespDto.setAttachmentUrl(bytes);
-                    return Result.success(optUploadFileRespDto);
+                    final GetUrlRequest request = new GetUrlRequest();
+                    request.setAttachmentId(uploadFileRespDto.getAttachmentId());
+                    request.setEncrypt(true);
+                    String fileUrl = resourceManageFeignService.getFileUrl(request);
+                    uploadFileRespDto.setAttachmentUrl(fileUrl);
+                    return Result.success(uploadFileRespDto);
                 } catch (Exception e) {
                     log.error("上传二维码异常", e);
                 }

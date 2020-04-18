@@ -26,7 +26,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@Api(value = "API - MallExceptionLogController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "API - AttachmentController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequestMapping(value = "/resource", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AttachmentController extends BaseController {
 

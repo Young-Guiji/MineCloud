@@ -198,7 +198,7 @@ public class AttachmentServiceImpl implements IAttachmentService {
         optAttachment.setPath(fileInfo.getAttachmentPath());
         optAttachment.setId(String.valueOf(id));
         optAttachment.setCenterName(bucketName);
-        fileInfo.setAttachmentId(id);
+        fileInfo.setAttachmentId(String.valueOf(id));
         attachmentMapper.insert(optAttachment);
     }
 

@@ -29,11 +29,9 @@ public class UploadFileRespDto implements Serializable {
 	private static final long serialVersionUID = -8008720269972450739L;
 
 	@ApiModelProperty(value = "附件ID")
-	private Long attachmentId;
-//	@ApiModelProperty(value = "文件完整url")
-//	private String attachmentUrl;
+	private String attachmentId;
 	@ApiModelProperty(value = "文件完整url")
-	private Object attachmentUrl;
+	private String attachmentUrl;
 	@ApiModelProperty(value = "文件名")
 	private String attachmentName;
 	@ApiModelProperty(value = "文件路径(等于七牛文件名)")
