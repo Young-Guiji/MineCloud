@@ -33,7 +33,7 @@ public class GaoDeUtil {
 	 *
 	 * @return the city by ip addr
 	 */
-	public static String getCityByIpAddr(String ipAddr) {
+	public static String getCityByIpAddr(String ipAddr,boolean isProxy) {
 		// http://lbs.amap.com/api/webservice/guide/api/ipconfig/
 		log.info("getCityByIpAddr - 根据IP定位. ipAddr={}", ipAddr);
 		String temp = "127.0.";
@@ -45,7 +45,7 @@ public class GaoDeUtil {
 		String urlAddressIp = "http://restapi.amap.com/v3/ip?key=f8bdce6f882a98635bb0b7b897331327&ip=%s";
 		String url = String.format(urlAddressIp, ipAddr);
 		try {
-			String str = HttpUtil.httpGet(url,true);
+			String str = HttpUtil.httpGet(url,isProxy);
 			location = new ObjectMapper().readValue(str, GaodeLocation.class);
 			return location.getProvince()+"-"+location.getCity();
 		} catch (Exception e) {
@@ -56,6 +56,6 @@ public class GaoDeUtil {
 	}
 
 	public static void main(String[] args) {
-		getCityByIpAddr("116.228.143.58");
+		getCityByIpAddr("116.228.143.58",true);
 	}
 }

@@ -31,3 +31,5 @@ minemall:
         mobileMaxSendCount: 1
         ipMaxSendCount: 2
         totalMaxSendCount: 3
+  http:
+    isProxy: false

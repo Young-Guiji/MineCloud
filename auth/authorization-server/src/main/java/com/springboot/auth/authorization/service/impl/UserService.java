@@ -11,6 +11,7 @@ import com.springboot.cloud.common.core.entity.organization.dto.UserLogDto;
 import com.springboot.cloud.common.core.util.RequestUtil;
 import com.springboot.cloud.util.GaoDeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ import java.util.Date;
 
 @Service
 public class UserService implements IUserService {
+
+    @Value("${minemall.http.isProxy}")
+    private boolean isProxy;
 
     @Autowired
     private TaskExecutor taskExecutor;
@@ -42,7 +46,7 @@ public class UserService implements IUserService {
         final String browser = userAgent.getBrowser().getName();
         final String remoteAddr = RequestUtil.getRemoteAddr(request);
         // 根据IP获取位置信息
-        final String remoteLocation = GaoDeUtil.getCityByIpAddr(remoteAddr);
+        final String remoteLocation = GaoDeUtil.getCityByIpAddr(remoteAddr,isProxy);
         final String requestURI = request.getRequestURI();
 
         UserLogDto userLogDto = new UserLogDto();

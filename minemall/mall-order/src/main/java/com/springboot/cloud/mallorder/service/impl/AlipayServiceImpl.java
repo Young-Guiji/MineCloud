@@ -5,10 +5,8 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.ExtendParams;
-import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
-import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.mallorder.dto.OrderDto;
 import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.GetUrlRequest;
@@ -19,23 +17,16 @@ import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.ServiceException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import com.springboot.cloud.mallorder.config.AlipayConfig;
-import com.springboot.cloud.mallorder.entity.po.MallOrderDetail;
 import com.springboot.cloud.mallorder.provider.ResourceManageFeignService;
 import com.springboot.cloud.mallorder.service.IAlipayService;
-import com.springboot.cloud.mallorder.service.IMallOrderDetailService;
 import com.springboot.cloud.mallorder.service.IMallOrderService;
-import com.springboot.cloud.util.BigDecimalUtil;
 import com.springboot.cloud.util.ZxingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.List;
-
 @Slf4j
 @Service
 public class AlipayServiceImpl implements IAlipayService {
@@ -43,8 +34,6 @@ public class AlipayServiceImpl implements IAlipayService {
     private static AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
     @Autowired
     private IMallOrderService orderService;
-    @Autowired
-    private IMallOrderDetailService orderDetailService;
     @Autowired
     private ResourceManageFeignService resourceManageFeignService;
     @Value("${mall.alipay.qrCode.pcPath}")
@@ -125,7 +114,7 @@ public class AlipayServiceImpl implements IAlipayService {
                 ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
                 File qrCodeImage = new File(qrPath);
                 UploadFileReqDto uploadFileReqDto = new UploadFileReqDto();
-                uploadFileReqDto.setBucketName("mall-oss-bucket");
+                uploadFileReqDto.setBucketName("miemine");
                 uploadFileReqDto.setFilePath(qrCodeQiniuPath);
                 uploadFileReqDto.setFileType("png");
                 uploadFileReqDto.setUserId(loginUserInfo.getId());

@@ -73,7 +73,7 @@ public class HttpUtil {
 
             CredentialsProvider provider = new BasicCredentialsProvider();
 
-            provider.setCredentials(new AuthScope(proxy), new UsernamePasswordCredentials("xieboyun-001", "jayJAY11."));
+            provider.setCredentials(new AuthScope(proxy), new UsernamePasswordCredentials("XXX", "XXX"));
 
             return HttpClients.custom().setDefaultCredentialsProvider(provider).build();
         }else{
