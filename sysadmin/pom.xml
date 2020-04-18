@@ -19,7 +19,7 @@
 
     <modules>
         <module>organization</module>
-        <module>resourcemanage</module>
+        <module>resource-manage</module>
     </modules>
 
     <dependencies>
