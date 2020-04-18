@@ -114,7 +114,7 @@ public class AlipayServiceImpl implements IAlipayService {
                 ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
                 File qrCodeImage = new File(qrPath);
                 UploadFileReqDto uploadFileReqDto = new UploadFileReqDto();
-                uploadFileReqDto.setBucketName("miemine");
+                uploadFileReqDto.setBucketName("minemine");
                 uploadFileReqDto.setFilePath(qrCodeQiniuPath);
                 uploadFileReqDto.setFileType("png");
                 uploadFileReqDto.setUserId(loginUserInfo.getId());
