@@ -2,6 +2,8 @@ server:
   port: ${SERVER_PORT:31005}
 
 spring:
+  profiles:
+    active: dev
   application:
     name: resource-manage
   cloud:

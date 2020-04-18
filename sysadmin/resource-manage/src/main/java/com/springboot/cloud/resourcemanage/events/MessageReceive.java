@@ -7,6 +7,7 @@ import com.springboot.cloud.common.core.entity.message.dto.MqMessageDto;
 import com.springboot.cloud.resourcemanage.service.IAttachmentService;
 import com.springboot.cloud.util.PublicUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,13 +27,13 @@ public class MessageReceive {
     private IAttachmentService attachmentService;
 
 
-    @RabbitListener(queues = MqTopicConstants.SEND_SMS_QUEUE)
+    @RabbitListener(queuesToDeclare = @Queue(MqTopicConstants.SEND_SMS_QUEUE))
     public void processSMS(MqMessageDto mqMessage) {
         log.info("SMSReceive"+ mqMessage);
         processMessage(mqMessage);
     }
 
-    @RabbitListener(queues = MqTopicConstants.PRODUCT_PIC_QUEUE)
+    @RabbitListener(queuesToDeclare = @Queue(MqTopicConstants.PRODUCT_PIC_QUEUE))
     @MqConsumerStore
     public void processProductPic(MqMessageDto mqMessage) {
         log.info("ProductPicReceive"+ mqMessage);

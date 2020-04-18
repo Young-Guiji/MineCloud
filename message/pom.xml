@@ -20,7 +20,7 @@
     </parent>
 
     <modules>
-        <module>messageconfirm</module>
+        <module>message-confirm</module>
     </modules>
 
     <dependencies>
