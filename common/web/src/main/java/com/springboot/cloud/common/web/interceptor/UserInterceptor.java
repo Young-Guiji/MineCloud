@@ -1,6 +1,7 @@
 package com.springboot.cloud.common.web.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.cloud.common.core.entity.malluser.dto.UserInfoDto;
 import com.springboot.cloud.common.core.util.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -33,10 +35,18 @@ public class UserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //从网关获取并校验,通过校验就可信任x-client-token-user中的信息
-        checkToken(request.getHeader(X_CLIENT_TOKEN));
-        String userInfoString = StringUtils.defaultIfBlank(request.getHeader(X_CLIENT_TOKEN_USER), "{}");
-        String decodeStr = URLDecoder.decode(userInfoString, "UTF-8");
-        UserContextHolder.getInstance().setContext(new ObjectMapper().readValue(decodeStr, Map.class));
+
+        //TODO 为了测试方便 先添加固定的值
+//        checkToken(request.getHeader(X_CLIENT_TOKEN));
+//        String userInfoString = StringUtils.defaultIfBlank(request.getHeader(X_CLIENT_TOKEN_USER), "{}");
+//        String decodeStr = URLDecoder.decode(userInfoString, "UTF-8");
+
+        Map<String, String> context = new HashMap<>();
+        context.put("userId","101");
+        context.put("user_name","admin");
+        context.put("loginName","超级管理员");
+
+        UserContextHolder.getInstance().setContext(context);
         return true;
     }
 
