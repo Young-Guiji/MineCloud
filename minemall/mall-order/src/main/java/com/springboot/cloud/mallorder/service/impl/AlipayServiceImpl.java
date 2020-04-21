@@ -136,7 +136,7 @@ public class AlipayServiceImpl implements IAlipayService {
                     final GetUrlRequest request = new GetUrlRequest();
                     request.setAttachmentId(uploadFileRespDto.getAttachmentId());
                     request.setEncrypt(true);
-                    String fileUrl = (String) resourceManageFeignService.getFileUrl(request).getData();
+                    String fileUrl = resourceManageFeignService.getFileUrl(request).getData();
                     uploadFileRespDto.setAttachmentUrl(fileUrl);
                     return Result.success(uploadFileRespDto);
                 } catch (Exception e) {

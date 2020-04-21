@@ -25,6 +25,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
 import static com.springboot.cloud.common.core.util.SnowflakeIdWorker.generateId;
@@ -95,7 +97,13 @@ public class QiniuServiceImpl implements IQiniuService {
     @Override
     public String getFileUrl(String domainUrl, String fileName, Long expires) {
         String downloadUrl;
-        String encodedFileName = UrlUtil.getURLEncoderString(fileName);
+//        String encodedFileName = UrlUtil.getURLEncoderString(fileName);
+        String encodedFileName = null;
+        try {
+            encodedFileName = URLEncoder.encode(fileName, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         String url = String.format("%s/%s", domainUrl, encodedFileName);
         log.info("getFileUrl - 获取文件全路径. url={}", url);
 
