@@ -129,14 +129,14 @@ public class AlipayServiceImpl implements IAlipayService {
                 uploadFileReqDto.setUploadFileByteInfoReqDto(uploadFileByteInfoReqDto);
                 UploadFileRespDto uploadFileRespDto = null;
                 try {
-                    Result result = resourceManageFeignService.uploadFile(uploadFileReqDto);
-                    uploadFileRespDto = (UploadFileRespDto) result.getData();
+                    Result<UploadFileRespDto> result = resourceManageFeignService.uploadFile(uploadFileReqDto);
+                    uploadFileRespDto = result.getData();
                     uploadFileRespDto.setRefNo(orderNo);
                     // 获取二维码
                     final GetUrlRequest request = new GetUrlRequest();
                     request.setAttachmentId(uploadFileRespDto.getAttachmentId());
                     request.setEncrypt(true);
-                    String fileUrl = resourceManageFeignService.getFileUrl(request);
+                    String fileUrl = (String) resourceManageFeignService.getFileUrl(request).getData();
                     uploadFileRespDto.setAttachmentUrl(fileUrl);
                     return Result.success(uploadFileRespDto);
                 } catch (Exception e) {

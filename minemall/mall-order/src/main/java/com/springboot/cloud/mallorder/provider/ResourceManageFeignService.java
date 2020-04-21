@@ -2,6 +2,7 @@ package com.springboot.cloud.mallorder.provider;
 
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.GetUrlRequest;
 import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileReqDto;
+import com.springboot.cloud.common.core.entity.resourcemanage.dto.UploadFileRespDto;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.entity.mallgoods.dto.GlobalExceptionLogDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -15,8 +16,8 @@ public interface ResourceManageFeignService {
     Result saveAndSendExceptionLog(@RequestBody GlobalExceptionLogDto exceptionLogDto);
 
     @PostMapping(value = "/resource/uploadFile")
-    Result uploadFile(@RequestBody UploadFileReqDto uploadFileReqDto);
+    Result<UploadFileRespDto> uploadFile(@RequestBody UploadFileReqDto uploadFileReqDto);
 
     @PostMapping(value = "/resource/getFileUrl")
-    String getFileUrl(@RequestBody GetUrlRequest getUrlRequest);
+    Result<String> getFileUrl(@RequestBody GetUrlRequest getUrlRequest);
 }
