@@ -49,7 +49,7 @@ public class AttachmentServiceImpl implements IAttachmentService {
         if (StringUtils.equals(tags, MqTopicConstants.MqTagEnum.DELETE_ATTACHMENT.getTag())) {
             List<String> idList = attachmentMapper.queryAttachmentByRefNo(body);
             for (final String id : idList) {
-//                this.deleteFile(id);
+                this.deleteFile(id);
             }
         } else {
             UpdateAttachmentDto attachmentDto;
@@ -72,7 +72,7 @@ public class AttachmentServiceImpl implements IAttachmentService {
         if (PublicUtil.isNotEmpty(idList)) {
             idList.removeAll(attachmentIdList);
             for (final String id : idList) {
-//                this.deleteFile(id);
+                this.deleteFile(id);
             }
         }
         for (final String id : attachmentIdList) {
@@ -184,6 +184,20 @@ public class AttachmentServiceImpl implements IAttachmentService {
         Attachment optAttachment = new Attachment();
         optAttachment.setRefNo(refNo);
         return attachmentMapper.queryAttachment(optAttachment);
+    }
+
+    @Override
+    public int deleteFile(String attachmentId) {
+        Attachment attachment = attachmentMapper.selectById(attachmentId);
+        if (attachment != null) {
+            try {
+                qiniuService.deleteFile(attachment.getPath() + attachment.getName(), attachment.getBucketName());
+            } catch (QiniuException e) {
+               log.error("七牛删除文件失败 filePath={},fileName={}",attachment.getPath(),attachment.getName(),e.getMessage());
+            }
+            return attachmentMapper.deleteById(attachmentId);
+        }
+        return 1;
     }
 
     private void insertAttachment(String fileType, String bucketName, UploadFileRespDto fileInfo) {

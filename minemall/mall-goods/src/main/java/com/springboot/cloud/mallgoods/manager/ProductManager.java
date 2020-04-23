@@ -47,7 +47,7 @@ public class ProductManager {
      * @param productId     the product id
      */
     @MqProducerStore
-    public void deleteProduct(final MqMessageData mqMessageData, final Long productId) {
+    public void deleteProduct(final MqMessageData mqMessageData, final String productId) {
         log.info("删除商品信息. mqMessageData={}, productId={}", mqMessageData, productId);
         int result = mallProductMapper.deleteById(productId);
         if (result < 1) {

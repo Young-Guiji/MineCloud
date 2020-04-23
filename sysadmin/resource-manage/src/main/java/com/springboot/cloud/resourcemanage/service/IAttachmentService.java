@@ -32,4 +32,6 @@ public interface IAttachmentService {
     Attachment getById(String attachmentId);
 
     List<AttachmentDto> listByRefNo(String refNo);
+
+    int deleteFile(String attachmentId);
 }

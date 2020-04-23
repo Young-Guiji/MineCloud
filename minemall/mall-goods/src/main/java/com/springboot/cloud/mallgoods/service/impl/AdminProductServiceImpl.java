@@ -128,7 +128,15 @@ public class AdminProductServiceImpl implements IAdminProductService {
     }
 
     @Override
-    public void deleteProductById(String id) {
-
+    public void deleteProductById(String productId) {
+        MallProduct product = mallProductMapper.selectById(productId);
+        if (product != null) {
+            String body = product.getProductCode();
+            String queue = MqTopicConstants.MqTagEnum.DELETE_ATTACHMENT.getQueue();
+            String tag = MqTopicConstants.MqTagEnum.DELETE_ATTACHMENT.getTag();
+            String key = RedisKeyUtil.createMqKey(queue, tag, product.getProductCode(), body);
+            MqMessageData mqMessageData = new MqMessageData(body, queue, tag, key, MessageGroupConstants.GOODS_GROUP);
+            productManager.deleteProduct(mqMessageData, productId);
+        }
     }
 }
