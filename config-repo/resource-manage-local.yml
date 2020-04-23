@@ -45,8 +45,8 @@ qiniu:
   # 对象储存
   bucket: minemine # 空间名称
   region: huadong # 存储区域
-  privateDomain: q8vyhi8gp.bkt.clouddn.com # 访问域名
-  publicDomain: q8vyhi8gp.bkt.clouddn.com # 访问域名
+  privateDomain: http://q8vyhi8gp.bkt.clouddn.com # 访问域名
+  publicDomain: http://q8vyhi8gp.bkt.clouddn.com # 访问域名
   fileMaxSize: 10000
 #management:
 #  endpoints:
