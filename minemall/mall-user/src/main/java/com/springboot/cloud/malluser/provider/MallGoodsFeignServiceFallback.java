@@ -22,7 +22,7 @@ public class MallGoodsFeignServiceFallback implements MallGoodsFeignService {
     }
 
     @Override
-    public Result<ProductDetailVo> getProductDetail(Long productId) {
+    public Result<ProductDetailVo> getProductDetail(String productId) {
         return null;
     }
 }

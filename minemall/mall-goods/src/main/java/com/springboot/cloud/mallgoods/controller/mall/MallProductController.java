@@ -23,6 +23,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +42,8 @@ public class MallProductController extends BaseController {
     private IMallProductCategoryService mallProductCategoryService;
 
     @ApiOperation(httpMethod = "GET", value = "根据商品ID查询商品详细信息")
-    @GetMapping(value = "/getProductDetail")
-    public Result<ProductDetailVo> getProductDetail(String productId) {
+    @GetMapping(value = "/queryProductDetail/{productId}")
+    public Result<ProductDetailVo> getProductDetail(@PathVariable String productId) {
         logger.info("根据商品ID查询商品详细信息. productId={}", productId);
         ProductDetailVo productDto = mallProductService.getProductDetail(productId);
         return Result.success(productDto);
@@ -62,7 +63,7 @@ public class MallProductController extends BaseController {
     }
 
     @ApiOperation(httpMethod = "POST", value = "获取商品列表信息")
-    @PostMapping(value = "/getProductList")
+    @PostMapping(value = "/queryProductList")
     public Result<IPage> getProductList(@RequestBody ProductReqDto productReqDto) {
         logger.info("获取商品列表信息. productReqDto={}", productReqDto);
         String categoryId = productReqDto.getCategoryId();

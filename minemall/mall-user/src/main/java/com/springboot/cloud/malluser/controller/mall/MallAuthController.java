@@ -52,7 +52,7 @@ public class MallAuthController extends BaseController {
      */
     @GetMapping(value = "/product/queryProductDetail/{productId}")
     @ApiOperation(httpMethod = "GET", value = "查询商品详情信息")
-    public Result<ProductDetailVo> queryProductDetail(@PathVariable Long productId) {
+    public Result<ProductDetailVo> queryProductDetail(@PathVariable String productId) {
         logger.info("getProductCategoryDtoByPid - 查询商品详情信息 productId={}", productId);
         return mallGoodsService.getProductDetail(productId);
     }

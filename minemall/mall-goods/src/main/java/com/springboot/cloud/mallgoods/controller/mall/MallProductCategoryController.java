@@ -9,7 +9,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,9 +24,9 @@ public class MallProductCategoryController extends BaseController {
     @Autowired
     private IMallProductCategoryService mallProductCategoryService;
 
-    @ApiOperation(httpMethod = "POST", value = "获取商品品类信息")
-    @PostMapping(value = "/getProductCategoryDtoByPid")
-    public Result<List<ProductCategoryDto>> getProductCategoryData(String pid) {
+    @ApiOperation(httpMethod = "GET", value = "获取商品品类信息")
+    @GetMapping(value = "/getProductCategoryDtoByPid/{pid}")
+    public Result<List<ProductCategoryDto>> getProductCategoryData(@PathVariable String pid) {
         logger.info("获取商品品类信息. pid={}", pid);
         List<ProductCategoryDto> list;
         if ("0".equals(pid)) {

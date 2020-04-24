@@ -22,5 +22,5 @@ public interface MallGoodsFeignService {
     Result<Page> getProductList(@RequestBody ProductReqDto productReqDto);
 
     @GetMapping(value = "/product/getProductDetail")
-    Result<ProductDetailVo> getProductDetail(@RequestParam("productId") Long productId);
+    Result<ProductDetailVo> getProductDetail(@RequestParam("productId") String productId);
 }
