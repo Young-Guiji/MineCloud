@@ -22,6 +22,7 @@ import java.util.List;
  * @param <ID> the type parameter
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class BaseTree<E, ID> implements Serializable {

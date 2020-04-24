@@ -23,6 +23,7 @@ import java.util.List;
  * The class Product category dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

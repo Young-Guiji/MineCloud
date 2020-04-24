@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
  * The class Ptc api constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PtcApiConstant {
@@ -27,7 +28,8 @@ public class PtcApiConstant {
 	 * The interface Alipay callback.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public interface AlipayCallback {
 		/**
 		 * The constant TRADE_STATUS_WAIT_BUYER_PAY.
@@ -52,7 +54,8 @@ public class PtcApiConstant {
 	 * The enum Pay platform enum.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public enum PayPlatformEnum {
 		/**
 		 * Alipay pay platform enum.

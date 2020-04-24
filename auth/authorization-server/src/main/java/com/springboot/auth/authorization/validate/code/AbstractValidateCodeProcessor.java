@@ -25,6 +25,7 @@ import java.util.Map;
  * @param <C> the type parameter @author guiji
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> implements ValidateCodeProcessor {
 

@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
  * The class Omc api constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class OrderConstant {

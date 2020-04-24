@@ -19,6 +19,7 @@ import java.io.Serializable;
  * The class Shipping vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class ShippingVo implements Serializable {

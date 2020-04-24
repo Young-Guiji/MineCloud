@@ -4,6 +4,7 @@ package com.springboot.auth.authorization.validate.code.sms;
  * The interface Sms code sender.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public interface SmsCodeSender {
 

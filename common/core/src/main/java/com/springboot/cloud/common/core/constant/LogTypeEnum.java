@@ -22,6 +22,7 @@ import java.util.Map;
  * The enum Log type enum.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public enum LogTypeEnum {
 	/**

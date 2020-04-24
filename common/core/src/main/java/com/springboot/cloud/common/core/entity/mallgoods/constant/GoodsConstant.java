@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
  * The class Mdc api constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GoodsConstant {
@@ -26,7 +27,8 @@ public class GoodsConstant {
 	 * The enum Product status enum.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public enum ProductStatusEnum {
 		/**
 		 * On sale product status enum.

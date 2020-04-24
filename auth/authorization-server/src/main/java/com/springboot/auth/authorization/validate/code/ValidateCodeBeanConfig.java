@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * 模块默认的配置。
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Configuration
 public class ValidateCodeBeanConfig {

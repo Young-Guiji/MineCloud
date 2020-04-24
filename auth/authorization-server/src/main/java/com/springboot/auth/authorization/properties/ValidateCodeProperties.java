@@ -17,6 +17,7 @@ import lombok.Data;
  * 验证码配置
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class ValidateCodeProperties {

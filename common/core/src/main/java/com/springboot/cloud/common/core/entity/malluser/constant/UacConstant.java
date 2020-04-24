@@ -15,6 +15,7 @@ package com.springboot.cloud.common.core.entity.malluser.constant;
  * The class Uac constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class UacConstant {
 
@@ -27,7 +28,8 @@ public class UacConstant {
 	 * token变量
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public static final class Token {
 		/**
 		 * 用户名密码加密秘钥
@@ -64,7 +66,8 @@ public class UacConstant {
 		 * The class Jwt.
 		 *
 		 * @author guiji
-		 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 		public static final class Jwt {
 			/**
 			 * The constant VIEW.
@@ -81,7 +84,8 @@ public class UacConstant {
 	 * The class User.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public static final class User {
 		/**
 		 * The constant LOGIN_NAME.
@@ -93,7 +97,8 @@ public class UacConstant {
 	 * The class Cookie.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public static final class Cookie {
 		/**
 		 * 用户名密码加密秘钥

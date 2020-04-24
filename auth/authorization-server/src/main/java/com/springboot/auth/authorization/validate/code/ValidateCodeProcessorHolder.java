@@ -20,6 +20,7 @@ import java.util.Map;
  * 校验码处理器管理器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component
 public class ValidateCodeProcessorHolder {

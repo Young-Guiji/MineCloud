@@ -21,7 +21,8 @@ import org.springframework.stereotype.Component;
 /**
  * The class Not display sql aspect.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Aspect
 @Component

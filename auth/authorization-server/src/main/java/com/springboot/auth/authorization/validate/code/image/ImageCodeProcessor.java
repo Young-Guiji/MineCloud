@@ -30,6 +30,7 @@ import java.util.Map;
  * 图片验证码处理器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component("imageValidateCodeProcessor")
 public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ImageCode> {

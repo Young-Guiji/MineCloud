@@ -19,6 +19,7 @@ import org.apache.commons.lang.StringUtils;
  * The class Security result.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @NoArgsConstructor

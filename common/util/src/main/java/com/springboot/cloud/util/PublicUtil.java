@@ -21,6 +21,7 @@ import java.util.Map;
  * The class Public util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PublicUtil {

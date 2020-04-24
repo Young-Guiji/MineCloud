@@ -14,7 +14,8 @@ package com.springboot.cloud.common.core.message.entity.enums;
 /**
  * Rocketmq默认延时级别.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public enum DelayLevelEnum {
 	/**

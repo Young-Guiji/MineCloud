@@ -20,6 +20,7 @@ import java.io.Serializable;
  * The class Element img url dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @AllArgsConstructor

@@ -17,6 +17,7 @@ import lombok.Data;
  * The class Email code properties.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class EmailCodeProperties {

@@ -27,6 +27,7 @@ import java.security.MessageDigest;
  * The class Http aes util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

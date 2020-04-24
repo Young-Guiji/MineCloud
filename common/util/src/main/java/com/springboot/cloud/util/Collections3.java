@@ -22,6 +22,7 @@ import java.util.List;
  * The class Collections 3.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Collections3 {

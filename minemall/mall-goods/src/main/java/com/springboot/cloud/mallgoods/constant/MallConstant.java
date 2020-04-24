@@ -15,6 +15,7 @@ package com.springboot.cloud.mallgoods.constant;
  * The class Mall constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class MallConstant {
 
@@ -22,7 +23,8 @@ public class MallConstant {
 	 * The enum MallProduct status enum.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public enum ProductStatusEnum {
 		/**
 		 * On sale product status enum.

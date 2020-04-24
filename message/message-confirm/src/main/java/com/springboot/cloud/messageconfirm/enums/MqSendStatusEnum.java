@@ -14,7 +14,8 @@ package com.springboot.cloud.messageconfirm.enums;
 /**
  * The enum Mq send status enum.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public enum MqSendStatusEnum {
 	/**

@@ -17,6 +17,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * 校验码存取器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public interface ValidateCodeRepository {
 

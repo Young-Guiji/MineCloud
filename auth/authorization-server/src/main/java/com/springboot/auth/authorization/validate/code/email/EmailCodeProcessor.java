@@ -28,6 +28,7 @@ import java.util.Map;
  * 短信验证码处理器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component("emailValidateCodeProcessor")
 public class EmailCodeProcessor extends AbstractValidateCodeProcessor<ValidateCode> {

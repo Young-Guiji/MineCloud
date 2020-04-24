@@ -17,6 +17,7 @@ import lombok.Data;
  * The class O auth 2 properties.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class OAuth2Properties {

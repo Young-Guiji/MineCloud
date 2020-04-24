@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * The class Mdc dict main controller.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @RestController
 @RequestMapping(value = "/message", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

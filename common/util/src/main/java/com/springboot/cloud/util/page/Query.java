@@ -19,6 +19,7 @@ import java.io.Serializable;
  * The class Query.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class Query implements Serializable {

@@ -22,6 +22,7 @@ import lombok.EqualsAndHashCode;
  * The class Product req dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

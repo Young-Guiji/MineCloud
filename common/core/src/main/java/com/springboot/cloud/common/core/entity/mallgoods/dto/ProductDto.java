@@ -22,6 +22,7 @@ import java.math.BigDecimal;
  * The class Product dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

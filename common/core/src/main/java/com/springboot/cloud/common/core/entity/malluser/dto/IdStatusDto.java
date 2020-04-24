@@ -21,6 +21,7 @@ import java.io.Serializable;
  * The class Id status dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

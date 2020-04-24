@@ -20,6 +20,7 @@ import java.util.Collection;
  * The class Security user.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class SecurityUser implements UserDetails {
 

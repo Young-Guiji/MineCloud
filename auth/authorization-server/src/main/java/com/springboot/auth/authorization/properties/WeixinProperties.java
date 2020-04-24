@@ -18,6 +18,7 @@ import lombok.EqualsAndHashCode;
  * 微信登录配置项
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class WeixinProperties{

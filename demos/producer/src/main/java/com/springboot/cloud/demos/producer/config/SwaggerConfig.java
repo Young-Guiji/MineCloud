@@ -27,7 +27,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("Spring Boot中使用Swagger2构建RESTful APIs")
                 .description("更多Spring Boot API")
-                .termsOfServiceUrl("https://github.com/Young-Guiji/SpringCloud")
+                .termsOfServiceUrl("https://github.com/Young-Guiji/MineCloud.git")
                 .version("2.0")
                 .build();
     }

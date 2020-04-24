@@ -6,6 +6,7 @@ import lombok.Data;
  * 社交登录配置项
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class SocialProperties {

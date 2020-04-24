@@ -21,6 +21,7 @@ import java.io.Serializable;
  * The class Login req dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel(value = "登录参数")
@@ -51,4 +52,3 @@ public class LoginReqDto implements Serializable {
 	private Long applicationId;
 
 }
-  

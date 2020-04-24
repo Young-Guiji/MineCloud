@@ -21,6 +21,7 @@ import java.io.Serializable;
  * The class User register dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel(value = "用户注册Dto")

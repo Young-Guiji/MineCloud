@@ -19,6 +19,7 @@ import java.io.Serializable;
  * The class Perm.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class Perm implements Serializable {

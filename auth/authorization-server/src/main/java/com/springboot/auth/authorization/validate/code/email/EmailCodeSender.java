@@ -15,6 +15,7 @@ package com.springboot.auth.authorization.validate.code.email;
  * The interface Sms code sender.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public interface EmailCodeSender {
 

@@ -25,6 +25,7 @@ import java.util.Map;
  * The class Base controller.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class BaseController {
 
@@ -95,4 +96,3 @@ public class BaseController {
 //	}
 
 }
-  

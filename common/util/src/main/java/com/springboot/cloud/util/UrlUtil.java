@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
  * url转码、解码
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Slf4j
 public class UrlUtil {

@@ -22,6 +22,7 @@ import java.io.Serializable;
  * The class Address dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

@@ -18,7 +18,8 @@ import lombok.EqualsAndHashCode;
 /**
  * The class Tpc mq message.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

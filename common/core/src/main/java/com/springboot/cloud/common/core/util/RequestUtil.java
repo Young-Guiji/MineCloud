@@ -33,6 +33,7 @@ import java.net.UnknownHostException;
  * The class Request util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

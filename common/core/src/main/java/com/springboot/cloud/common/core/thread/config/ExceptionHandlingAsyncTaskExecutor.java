@@ -23,6 +23,7 @@ import java.util.concurrent.Future;
  * The class Exception handling async task executor.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Slf4j
 public class ExceptionHandlingAsyncTaskExecutor implements AsyncTaskExecutor, InitializingBean, DisposableBean {

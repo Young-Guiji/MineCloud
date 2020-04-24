@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
  * The class Security properties.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component
 @ConfigurationProperties(prefix = "minemall.security")

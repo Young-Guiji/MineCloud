@@ -24,6 +24,7 @@ import java.util.List;
  * The class Order vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class OrderVo implements Serializable {

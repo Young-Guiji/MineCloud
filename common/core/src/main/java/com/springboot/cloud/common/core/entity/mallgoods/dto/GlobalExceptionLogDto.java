@@ -27,6 +27,7 @@ import java.util.Date;
  * The class Global exception log dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @NoArgsConstructor

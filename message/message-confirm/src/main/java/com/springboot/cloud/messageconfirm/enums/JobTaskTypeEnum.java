@@ -15,7 +15,8 @@ package com.springboot.cloud.messageconfirm.enums;
 /**
  * The enum Job task type enum.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public enum JobTaskTypeEnum {
 

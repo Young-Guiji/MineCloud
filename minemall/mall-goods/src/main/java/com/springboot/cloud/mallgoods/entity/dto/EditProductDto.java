@@ -22,7 +22,8 @@ import java.util.List;
 /**
  * The class Mdc edit category dto.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class EditProductDto implements Serializable {

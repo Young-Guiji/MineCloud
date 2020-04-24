@@ -20,10 +20,11 @@ import lombok.EqualsAndHashCode;
  * The class Mdc address.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_mdc_address")
+@TableName("pc_mall_address")
 public class MallAddress extends BasePo {
 	private static final long serialVersionUID = -499010884211394846L;
 

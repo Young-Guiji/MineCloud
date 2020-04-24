@@ -17,6 +17,7 @@ import lombok.Data;
  * session管理相关配置项
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class SessionProperties {

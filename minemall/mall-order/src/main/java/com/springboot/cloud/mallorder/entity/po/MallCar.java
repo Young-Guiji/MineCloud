@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_omc_cart")
+@TableName("pc_mall_cart")
 public class MallCar extends BasePo {
 
     private static final long serialVersionUID = 5333646386138778574L;

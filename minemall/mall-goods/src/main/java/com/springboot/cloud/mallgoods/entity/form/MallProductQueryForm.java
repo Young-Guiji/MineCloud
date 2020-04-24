@@ -21,6 +21,7 @@ import java.math.BigDecimal;
  * The class Mdc product.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

@@ -19,7 +19,8 @@ import java.io.Serializable;
 /**
  * The class Opt upload file req dto.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel(value = "OptUploadFileReqDto")

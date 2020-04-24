@@ -22,6 +22,7 @@ import org.apache.ibatis.type.Alias;
  * 数据字典.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

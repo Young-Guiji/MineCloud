@@ -24,6 +24,7 @@ import java.util.List;
  * The class MallProduct vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

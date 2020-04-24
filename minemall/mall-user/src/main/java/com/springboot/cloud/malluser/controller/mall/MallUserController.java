@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * The class Mall user controller.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @RestController
 @RequestMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

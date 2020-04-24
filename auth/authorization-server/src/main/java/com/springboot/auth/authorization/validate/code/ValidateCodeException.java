@@ -7,6 +7,7 @@ import org.springframework.security.core.AuthenticationException;
  * The class Validate code exception.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class ValidateCodeException extends AuthenticationException {
 

@@ -22,6 +22,7 @@ import java.awt.image.BufferedImage;
  * 默认的图片验证码生成器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class ImageCodeGenerator implements ValidateCodeGenerator {
 

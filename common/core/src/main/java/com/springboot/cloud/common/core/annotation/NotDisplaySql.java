@@ -21,7 +21,8 @@ import java.lang.annotation.Target;
 /**
  * 配合 SqlLogInterceptor 对指定方法 禁止打印SQL到控制台
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

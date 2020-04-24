@@ -14,6 +14,7 @@ package com.springboot.cloud.common.core.constant;
  * The class Global constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class GlobalConstant {
 
@@ -122,7 +123,8 @@ public class GlobalConstant {
 	 * The class Symbol.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public static final class Symbol {
 		private Symbol() {
 		}
@@ -159,7 +161,8 @@ public class GlobalConstant {
 	 * The class Oss.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public static final class Qiniu {
 		/**
 		 * The constant DEFAULT_FILE_PATH.
@@ -192,7 +195,8 @@ public class GlobalConstant {
 	 * The enum Payment type enum.
 	 *
 	 * @author guiji
-	 */
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public enum PaymentTypeEnum {
 		/**
 		 * Online pay payment type enum.

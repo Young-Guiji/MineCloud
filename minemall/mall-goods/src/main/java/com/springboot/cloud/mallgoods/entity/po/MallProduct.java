@@ -23,10 +23,11 @@ import java.math.BigDecimal;
  * The class Mdc product.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_mdc_product")
+@TableName("pc_mall_product")
 @Alias(value = "product")
 public class MallProduct extends BasePo {
 

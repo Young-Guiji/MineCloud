@@ -12,6 +12,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * 短信验证码生成器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component("smsValidateCodeGenerator")
 public class SmsCodeGenerator implements ValidateCodeGenerator {

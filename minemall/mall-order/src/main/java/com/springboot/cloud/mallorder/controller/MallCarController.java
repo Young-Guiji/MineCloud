@@ -25,6 +25,7 @@ import java.util.List;
  * 购物车管理.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @RestController
 @RequestMapping(value = "/cart", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

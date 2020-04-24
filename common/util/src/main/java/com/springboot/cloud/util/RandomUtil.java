@@ -20,6 +20,7 @@ import java.util.Random;
  * The class Random util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RandomUtil {

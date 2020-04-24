@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * The class mall order controller.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @RestController
 @RequestMapping(value = "/order")

@@ -51,7 +51,7 @@
     <include refid="Base_Column_List">
       <property name="alias" value="oder"/>
     </include>
-    from pc_omc_order oder
+    from pc_mall_order oder
     where oder.order_no = #{orderNo}
     and oder.user_id = #{userId}
   </select>
@@ -60,7 +60,7 @@
     <include refid="Base_Column_List">
       <property name="alias" value="oder"/>
     </include>
-    FROM pc_omc_order oder
+    FROM pc_mall_order oder
     where oder.order_no = #{orderNo}
   </select>
 
@@ -70,7 +70,7 @@
     <include refid="Base_Column_List">
       <property name="alias" value="oder"/>
     </include>
-    from pc_omc_order oder
+    from pc_mall_order oder
     where oder.user_id = #{userId}
     order by updated_time desc
   </select>
@@ -81,7 +81,7 @@
     <include refid="Base_Column_List">
       <property name="alias" value="oder"/>
     </include>
-    from pc_omc_order oder
+    from pc_mall_order oder
     ORDER BY updated_time desc
   </select>
   <select id="queryOrderListWithPage" resultType="com.springboot.cloud.common.core.entity.mallorder.vo.OrderDocVo">
@@ -90,8 +90,8 @@
       <property name="alias" value="oder"/>
     </include>
     ,shipping.receiver_name
-    from pc_omc_order oder
-    LEFT JOIN pc_omc_shipping shipping ON oder.shipping_id = shipping.id
+    from pc_mall_order oder
+    LEFT JOIN pc_mall_shipping shipping ON oder.shipping_id = shipping.id
     where 1 = 1
     <if test="status != null and status != ''">
       and oder.status = #{status}

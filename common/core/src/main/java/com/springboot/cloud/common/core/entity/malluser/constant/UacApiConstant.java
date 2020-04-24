@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
  * The class Uac api constant.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UacApiConstant {

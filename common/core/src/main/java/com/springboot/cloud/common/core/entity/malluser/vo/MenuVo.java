@@ -22,6 +22,7 @@ import java.util.List;
  * The class Menu vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel("菜单")

@@ -20,6 +20,7 @@ import java.math.BigDecimal;
  * The class Cart product vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class CartProductVo implements Serializable {

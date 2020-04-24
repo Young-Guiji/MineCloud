@@ -6,6 +6,7 @@ import lombok.Data;
  * 认证服务器注册的第三方应用配置项
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class OAuth2ClientProperties {

@@ -21,6 +21,7 @@ import java.io.Serializable;
  * 忘记密码.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

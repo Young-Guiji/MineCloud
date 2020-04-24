@@ -46,14 +46,14 @@
   </sql>
   <update id="updateProductStockById" parameterType="com.springboot.cloud.common.core.entity.mallgoods.dto.ProductDto">
     UPDATE
-      pc_mdc_product
+      pc_mall_product
     SET stock = stock + #{changeStock}
     WHERE id = #{id}
   </update>
   <select id="selectByNameAndCategoryIds" resultType="com.springboot.cloud.mallgoods.entity.po.MallProduct">
     SELECT
     <include refid="Base_Column_List" />
-    from pc_mdc_product
+    from pc_mall_product
     where status = 1
     <if test="productName != null and productName !=''">
       and name like concat('%', #{productName}, '%')
@@ -71,7 +71,7 @@
   <select id="queryProductListWithPage" resultType="com.springboot.cloud.mallgoods.entity.vo.ProductVo">
     SELECT
     <include refid="Base_Column_List" />
-    from pc_mdc_product
+    from pc_mall_product
     where 1 = 1
     <if test="mallProductQueryForm.name != null and mallProductQueryForm.name !=''">
       and name like concat('%', #{mallProductQueryForm.name}, '%')

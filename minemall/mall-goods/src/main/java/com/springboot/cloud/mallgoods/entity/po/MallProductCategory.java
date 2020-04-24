@@ -21,10 +21,11 @@ import org.apache.ibatis.type.Alias;
  * The class Mdc product category.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_mdc_product_category")
+@TableName("pc_mall_product_category")
 @Alias("productCategory")
 public class MallProductCategory extends BasePo {
 

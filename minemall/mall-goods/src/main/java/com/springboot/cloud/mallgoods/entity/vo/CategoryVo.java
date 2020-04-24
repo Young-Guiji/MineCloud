@@ -19,6 +19,7 @@ import lombok.EqualsAndHashCode;
  * The class Mdc dict vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

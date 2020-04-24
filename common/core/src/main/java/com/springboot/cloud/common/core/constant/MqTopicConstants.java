@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
 /**
  * The class Aliyun mq topic constants.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MqTopicConstants {
@@ -35,8 +36,9 @@ public class MqTopicConstants {
 	/**
 	 * The enum Uac mq topic enum.
 	 *
-	 * @author paascloud.net @gmail.com
-	 */
+	 * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public enum MqTopicEnum {
 
 		/**
@@ -92,8 +94,9 @@ public class MqTopicConstants {
 	/**
 	 * The enum Uac mq tag enum.
 	 *
-	 * @author paascloud.net @gmail.com
-	 */
+	 * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
+ */
 	public enum MqTagEnum {
 
 		/**

@@ -39,7 +39,7 @@
     SELECT
       id   AS categoryId,
       name AS categoryName
-    FROM pc_mdc_product_category
+    FROM pc_mall_product_category
     WHERE pid = #{categoryId,jdbcType=INTEGER}
   </select>
   <select id="listCategoryVo" resultType="com.springboot.cloud.mallgoods.entity.vo.CategoryVo">
@@ -48,6 +48,6 @@
       <property name="alias" value="category"/>
     </include>
     from
-    pc_mdc_product_category category
+    pc_mall_product_category category
   </select>
 </mapper>

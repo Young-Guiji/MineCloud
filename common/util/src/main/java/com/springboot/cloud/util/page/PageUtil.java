@@ -18,6 +18,7 @@ import lombok.Data;
  * The class Page util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class PageUtil {

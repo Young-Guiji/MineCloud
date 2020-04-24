@@ -21,6 +21,7 @@ import java.util.UUID;
  * The class Pub utils.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PubUtils {

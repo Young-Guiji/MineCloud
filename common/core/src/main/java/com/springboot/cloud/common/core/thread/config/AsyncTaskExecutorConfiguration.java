@@ -30,6 +30,7 @@ import java.util.concurrent.Executor;
  * The class Async config.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Configuration
 @EnableAsync

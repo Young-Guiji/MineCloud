@@ -21,6 +21,7 @@ import java.util.Set;
  * The class User info dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel(value = "用户Dto")

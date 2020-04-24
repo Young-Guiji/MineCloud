@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * The class Omc shipping controller.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @RestController
 @RequestMapping(value = "/shipping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

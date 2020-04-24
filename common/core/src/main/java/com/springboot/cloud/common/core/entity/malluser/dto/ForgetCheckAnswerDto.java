@@ -21,6 +21,7 @@ import java.io.Serializable;
  * The class Forget check answer dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

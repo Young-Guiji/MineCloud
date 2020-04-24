@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
  * QQ登录配置项
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class QQProperties{

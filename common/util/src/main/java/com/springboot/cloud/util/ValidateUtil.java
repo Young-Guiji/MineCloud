@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
  * The class Validate util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ValidateUtil {

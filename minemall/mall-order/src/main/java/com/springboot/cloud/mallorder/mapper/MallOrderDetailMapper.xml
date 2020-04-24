@@ -29,7 +29,7 @@
     <select id="getListByOrderNoUserId" parameterType="map" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        from pc_omc_order_detail
+        from pc_mall_order_detail
         where order_no = #{orderNo}
         and user_id = #{userId}
     </select>
@@ -37,14 +37,14 @@
     <select id="getListByOrderNo" parameterType="map" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        from pc_omc_order_detail
+        from pc_mall_order_detail
         where order_no = #{orderNo}
     </select>
 
 
 
     <insert id="batchInsertOrderDetail" parameterType="java.util.List">
-        insert into pc_omc_order_detail
+        insert into pc_mall_order_detail
         (id, version, detail_no, user_id, order_no, product_id, product_name, product_image, current_unit_price,
         quantity, total_price, created_by, created_id, created_time,updated_by, updated_id, updated_time)
         values

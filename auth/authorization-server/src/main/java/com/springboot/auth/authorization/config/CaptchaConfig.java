@@ -22,6 +22,7 @@ import java.util.Properties;
  * The class Captcha config.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Configuration
 public class CaptchaConfig {

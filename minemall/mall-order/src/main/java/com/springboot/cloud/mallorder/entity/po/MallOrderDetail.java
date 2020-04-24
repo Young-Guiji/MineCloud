@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_omc_order_detail")
+@TableName("pc_mall_order_detail")
 public class MallOrderDetail extends BasePo {
 
     private static final long serialVersionUID = -2167960069551022897L;

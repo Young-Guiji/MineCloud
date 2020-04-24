@@ -26,6 +26,7 @@ import java.util.Date;
  * The class Mdc exception log.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Alias("mdcExceptionLog")
 @TableName("pc_exception_log")

@@ -20,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
  * The class Redis key util.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RedisKeyUtil {

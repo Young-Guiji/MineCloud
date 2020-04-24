@@ -22,6 +22,7 @@ import java.util.Map;
  * The class Thread local map.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ThreadLocalMap {

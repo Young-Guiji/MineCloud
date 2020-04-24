@@ -137,7 +137,7 @@ services:
 
 ### spring-cloud集成
 
-请参考：https://github.com/Young-Guiji/SpringCloud例子
+请参考：https://github.com/Young-Guiji/MineCloud.git例子
 
 应用集成开发好后，请求应用的接口
 

@@ -10,7 +10,7 @@ import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("pc_omc_order")
+@TableName("pc_mall_order")
 public class MallOrder extends BasePo {
 
     private static final long serialVersionUID = -8434937678211570532L;

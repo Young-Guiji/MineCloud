@@ -4,6 +4,7 @@ package com.springboot.auth.authorization.properties;
  * The interface Security constants.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public interface SecurityConstants {
 

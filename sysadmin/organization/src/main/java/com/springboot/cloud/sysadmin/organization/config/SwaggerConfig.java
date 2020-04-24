@@ -27,7 +27,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("系统管理API")
                 .description("系统管理，组织人员管理、角色权限管理、岗位管理")
-                .termsOfServiceUrl("https://github.com/Young-Guiji/SpringCloud")
+                .termsOfServiceUrl("https://github.com/Young-Guiji/MineCloud.git")
                 .version("2.0")
                 .build();
     }

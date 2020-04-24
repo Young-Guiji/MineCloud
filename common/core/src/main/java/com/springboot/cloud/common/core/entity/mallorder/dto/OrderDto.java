@@ -21,6 +21,7 @@ import java.util.Date;
  * The class Order dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class OrderDto implements Serializable {

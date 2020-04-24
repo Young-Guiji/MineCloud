@@ -16,10 +16,10 @@ Date: 2020-04-11 09:11:52
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for pc_omc_cart
+-- Table structure for pc_mall_cart
 -- ----------------------------
-DROP TABLE IF EXISTS `pc_omc_cart`;
-CREATE TABLE `pc_omc_cart` (
+DROP TABLE IF EXISTS `pc_mall_cart`;
+CREATE TABLE `pc_mall_cart` (
   `id` varchar(20) NOT NULL COMMENT 'ID',
   `version` int(11) DEFAULT '0' COMMENT '版本号',
   `user_id` varchar(20) NOT NULL COMMENT '用户ID',
@@ -36,14 +36,14 @@ CREATE TABLE `pc_omc_cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='购物车表';
 
 -- ----------------------------
--- Records of pc_omc_cart
+-- Records of pc_mall_cart
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for pc_omc_order
+-- Table structure for pc_mall_order
 -- ----------------------------
-DROP TABLE IF EXISTS `pc_omc_order`;
-CREATE TABLE `pc_omc_order` (
+DROP TABLE IF EXISTS `pc_mall_order`;
+CREATE TABLE `pc_mall_order` (
   `id` varchar(20) NOT NULL COMMENT 'ID',
   `version` int(11) NOT NULL DEFAULT '0' COMMENT '版本号',
   `order_no` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '订单号',
@@ -68,14 +68,14 @@ CREATE TABLE `pc_omc_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
 
 -- ----------------------------
--- Records of pc_omc_order
+-- Records of pc_mall_order
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for pc_omc_order_detail
+-- Table structure for pc_mall_order_detail
 -- ----------------------------
-DROP TABLE IF EXISTS `pc_omc_order_detail`;
-CREATE TABLE `pc_omc_order_detail` (
+DROP TABLE IF EXISTS `pc_mall_order_detail`;
+CREATE TABLE `pc_mall_order_detail` (
   `id` varchar(20) NOT NULL COMMENT 'ID',
   `version` int(11) DEFAULT '0' COMMENT '版本号',
   `detail_no` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '订单明细序列号',
@@ -99,14 +99,14 @@ CREATE TABLE `pc_omc_order_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单明细表';
 
 -- ----------------------------
--- Records of pc_omc_order_detail
+-- Records of pc_mall_order_detail
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for pc_omc_shipping
+-- Table structure for pc_mall_shipping
 -- ----------------------------
-DROP TABLE IF EXISTS `pc_omc_shipping`;
-CREATE TABLE `pc_omc_shipping` (
+DROP TABLE IF EXISTS `pc_mall_shipping`;
+CREATE TABLE `pc_mall_shipping` (
   `id` varchar(20) NOT NULL COMMENT 'ID',
   `version` int(11) NOT NULL DEFAULT '0' COMMENT '版本号',
   `user_id` varchar(20) DEFAULT NULL COMMENT '用户id',
@@ -134,8 +134,27 @@ CREATE TABLE `pc_omc_shipping` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='收货人信息表';
 
 -- ----------------------------
--- Records of pc_omc_shipping
+-- Records of pc_mall_shipping
 -- ----------------------------
-INSERT INTO `pc_omc_shipping` VALUES ('29', '0', '101', '吉利', '13800138000', '13800138000', null, '北京', null, '北京', '海淀区', '', '', '背二街', '海淀区中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
-INSERT INTO `pc_omc_shipping` VALUES ('4', '0', '101', 'jack', '13800138000', '18688888888', null, '北京', null, '北京市', '海淀区', '', '', '西二街', '中关村', '100000', '0', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
-INSERT INTO `pc_omc_shipping` VALUES ('7', '0', '101', 'Rosen', '13800138000', '13800138000', null, '北京', null, '北京', null, '', '', '东二街', '中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
+INSERT INTO `pc_mall_shipping` VALUES ('29', '0', '101', '吉利', '13800138000', '13800138000', null, '北京', null, '北京', '海淀区', '', '', '背二街', '海淀区中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
+INSERT INTO `pc_mall_shipping` VALUES ('4', '0', '101', 'jack', '13800138000', '18688888888', null, '北京', null, '北京市', '海淀区', '', '', '西二街', '中关村', '100000', '0', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
+INSERT INTO `pc_mall_shipping` VALUES ('7', '0', '101', 'Rosen', '13800138000', '13800138000', null, '北京', null, '北京', null, '', '', '东二街', '中关村', '100000', '1', 'admin', '1', '2017-07-12 14:01:35', 'admin', '1', '2017-07-12 14:01:35');
+
+DROP TABLE IF EXISTS `pc_mall_pay_info`;
+CREATE TABLE `pc_mall_pay_info` (
+  `id` varchar(20) NOT NULL COMMENT 'ID',
+  `version` int(11) DEFAULT '0' COMMENT '版本号',
+  `user_id` varchar(20) DEFAULT NULL COMMENT '用户ID',
+  `order_no` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '订单号',
+  `pay_platform` int(11) DEFAULT '0' COMMENT '支付平台:1-支付宝,2-微信',
+  `platform_number` varchar(100) CHARACTER SET utf8 DEFAULT '' COMMENT '支付宝支付流水号',
+  `platform_status` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '支付宝支付状态',
+  `created_by` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '创建人',
+  `created_id` varchar(20) DEFAULT NULL COMMENT '创建人ID',
+  `created_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_by` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '最近操作人',
+  `updated_id` varchar(20) DEFAULT NULL COMMENT '最后操作人ID',
+  `updated_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `order_no_user_id_index` (`order_no`,`user_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='支付信息表';

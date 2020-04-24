@@ -19,6 +19,7 @@ import java.util.List;
  * The class Tree node.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class TreeNode {

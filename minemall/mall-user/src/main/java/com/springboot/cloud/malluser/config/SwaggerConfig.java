@@ -27,7 +27,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("网关管理api")
                 .description("网关管理")
-                .termsOfServiceUrl("https://github.com/Young-Guiji/SpringCloud")
+                .termsOfServiceUrl("https://github.com/Young-Guiji/MineCloud.git")
                 .version("2.0")
                 .build();
     }

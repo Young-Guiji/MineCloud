@@ -21,6 +21,7 @@ import java.math.BigDecimal;
  * The class Product detail vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

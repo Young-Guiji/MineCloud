@@ -31,6 +31,7 @@ import java.io.IOException;
  * APP环境下认证成功处理器.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component("pcAuthenticationSuccessHandler")
 @Slf4j

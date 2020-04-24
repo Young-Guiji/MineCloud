@@ -20,6 +20,7 @@ import java.math.BigDecimal;
  * The class Order detail dto.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class OrderDetailDto implements Serializable {

@@ -34,28 +34,28 @@
     </sql>
 
     <delete id="deleteByShippingIdUserId" parameterType="map">
-        DELETE FROM pc_omc_shipping
+        DELETE FROM pc_mall_shipping
         WHERE id = #{shippingId}
               AND user_id = #{userId}
     </delete>
     <select id="selectByShippingIdUserId" resultMap="BaseResultMap" parameterType="map">
         SELECT
         <include refid="Base_Column_List"/>
-        from pc_omc_shipping
+        from pc_mall_shipping
         where id = #{shippingId}
         and user_id = #{userId}
     </select>
     <select id="selectByUserId" resultMap="BaseResultMap" parameterType="map">
         SELECT
         <include refid="Base_Column_List"/>
-        from pc_omc_shipping
+        from pc_mall_shipping
         where user_id = #{userId}
     </select>
     <select id="selectDefaultAddressByUserId"
             resultType="com.springboot.cloud.mallorder.entity.po.MallShipping">
         SELECT
             <include refid="Base_Column_List"/>
-        from pc_omc_shipping
+        from pc_mall_shipping
         where id = #{shippingId}
         and default = 1
     </select>

@@ -6,6 +6,7 @@ import lombok.Data;
  * The class Sms code properties.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class SmsCodeProperties {

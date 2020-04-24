@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
  * 验证码信息封装类
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class ValidateCode implements Serializable {
 

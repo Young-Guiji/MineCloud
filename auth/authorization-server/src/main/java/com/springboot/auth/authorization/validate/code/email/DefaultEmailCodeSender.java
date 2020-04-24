@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * 默认的短信验证码发送器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Slf4j
 public class DefaultEmailCodeSender implements EmailCodeSender {

@@ -25,6 +25,7 @@ import java.util.Set;
  * 校验验证码的过滤器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {

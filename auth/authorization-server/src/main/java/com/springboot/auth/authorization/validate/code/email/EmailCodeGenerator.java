@@ -27,6 +27,7 @@ import java.util.Map;
  * 短信验证码生成器
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Slf4j
 @Component("emailValidateCodeGenerator")

@@ -20,7 +20,8 @@ import lombok.NoArgsConstructor;
 /**
  * The class Opt batch get url request.
  *
- * @author paascloud.net @gmail.com
+ * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 @ApiModel

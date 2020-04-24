@@ -7,6 +7,7 @@ import com.springboot.auth.authorization.properties.SecurityConstants;
  * 校验码类型
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public enum ValidateCodeType {
 

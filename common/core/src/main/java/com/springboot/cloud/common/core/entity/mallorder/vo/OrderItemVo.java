@@ -23,6 +23,7 @@ import java.util.Date;
  * The class Order item vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class OrderItemVo implements Serializable {

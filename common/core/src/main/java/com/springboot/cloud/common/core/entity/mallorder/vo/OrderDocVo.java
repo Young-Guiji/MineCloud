@@ -22,6 +22,7 @@ import java.util.Date;
  * The class Order doc vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

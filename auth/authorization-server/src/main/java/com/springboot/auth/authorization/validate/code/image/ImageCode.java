@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
  * 图片验证码
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class ImageCode extends ValidateCode {
 

@@ -21,6 +21,7 @@ import java.util.List;
  * The class Cart vo.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 @Data
 public class CartVo implements Serializable {

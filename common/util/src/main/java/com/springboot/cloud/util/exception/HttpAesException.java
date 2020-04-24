@@ -16,6 +16,7 @@ package com.springboot.cloud.util.exception;
  * The class Http aes exception.
  *
  * @author guiji
+ * https://github.com/Young-Guiji/MineCloud.git
  */
 public class HttpAesException extends IllegalArgumentException {
 	private static final long serialVersionUID = -2489600753056921095L;
